@@ -1,0 +1,623 @@
+[
+  {
+    "hauptprozess": "Record to Report (R2R)",
+    "unterprozess": "Erstellung der UVA",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Wir sammeln die umsatzrelevanten Daten manuell aus Belegen, Rechnungen und Kontenlisten.",
+        "punkte": 0
+      },
+      {
+        "text": "Einige Daten für die Umsatzsteuervoranmeldung werden automatisch aus dem Buchhaltungssystem übernommen, müssen aber manuell überprüft, ergänzt oder korrigiert werden.",
+        "punkte": 2
+      },
+      {
+        "text": "Die Daten für die Umsatzsteuervoranmeldung werden automatisiert aggregiert und mithilfe von RPA oder KI analysiert und zugeordnet.",
+        "punkte": 3
+      },
+      {
+        "text": "Umsatzsteuer und Vorsteuer werden automatisch basierend auf Buchungsdaten und Steuerlogiken berechnet. Die UVA wird automatisch generiert und in das korrekte Format für die Übermittlung umgewandelt.",
+        "punkte": 4
+      },
+      {
+        "text": "Die UVA wird automatisch generiert und in das korrekte Format für die Übermittlung umgewandelt. Eine KI überprüft die UVA auf Unstimmigkeiten und potenzielle Fehler, bevor die Abgabe erfolgt.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Record to Report (R2R)",
+    "unterprozess": "Abgabe der UVA",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Die Umsatzsteuervoranmeldung wird physisch beim Finanzamt eingereicht.",
+        "punkte": 0
+      },
+      {
+        "text": "Die Eingabe über FinanzOnline erfolgt zumindest teilweise manuell.",
+        "punkte": 2
+      },
+      {
+        "text": "Die von der Buchhaltungs- bzw. ERP-Software erstellte XML-Datei wird manuell im FinanzOnline hochgeladen.",
+        "punkte": 3
+      },
+      {
+        "text": "Die elektronische Übermittlung der UVA an das Finanzamt erfolgt automatisch durch die Buchhaltungs- bzw. ERP-Software.",
+        "punkte": 4
+      },
+      {
+        "text": "Die Abgabe der UVA erfolgt vollständig automatisiert und KI-gestützt. Das System erkennt Abweichungen, führt automatisierte Prüfungen durch oder meldet etwaige Risiken vorab.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Record to Report (R2R)",
+    "unterprozess": "Erstellung Monatsberichtswesen",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Es werden keine oder manuelle Monatsberichte wie bspw. eine monatliche GuV erstellt. Im Falle eines manuellen Berichts erfolgt die Berechnung mit Hilfe von Tabellenkalkulationsprogrammen (z. B. Excel), aber ohne Integration von Datenquellen.",
+        "punkte": 0
+      },
+      {
+        "text": "Die Daten für die Monatsberichte werden aus der Buchhaltungs- bzw. ERP-Software exportiert und in Excel oder anderen Tools manuell weiterverarbeitet.",
+        "punkte": 2
+      },
+      {
+        "text": "Ein Großteil der Berichtsdaten wird automatisiert aus integrierten Systemen zusammengeführt. RPA oder KI-basierte Tools unterstützen bei der Strukturierung und Kommentierung der Daten. Die Berichte müssen nur noch inhaltlich final überprüft werden.",
+        "punkte": 3
+      },
+      {
+        "text": "Alle relevanten Finanzdaten werden automatisch in einem ERP-System oder einer Buchhaltungssoftware erfasst und konsolidiert. Automatische Berechnung der GuV-Positionen anhand vordefinierter Kontenpläne und Buchungsregeln. Berichte werden direkt im System generiert und können automatisch in verschiedenen Formaten (PDF, Excel, Dashboard) erstellt werden.",
+        "punkte": 4
+      },
+      {
+        "text": "KI-Systeme können Finanzberichte automatisch generieren, indem sie relevante Daten aus verschiedenen Quellen sammeln und analysieren. Durch den Einsatz von KI-Techniken (wie maschinellem Lernen) können Finanzdaten analysiert werden, um Einblicke in Geschäftstrends, Umsatzprognosen, Kosteneffizienz und finanzielle Risiken zu gewinnen. Dies kann bei der strategischen Planung und Entscheidungsfindung unterstützen. KI optimiert Kontenpläne und berechnet automatisch komplexe zukünftige GuV-Szenarien, z. B. nach Abteilungen, Projekten oder Geschäftseinheiten.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Record to Report (R2R)",
+    "unterprozess": "Verteilung von regelmäßigen internen Berichten",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Die Berichte werden ausgedruckt und übergeben, oder es gibt keine monatlichen Berichte.",
+        "punkte": 0
+      },
+      {
+        "text": "Berichte werden z. B. als PDF- oder Excel-Dateien manuell per Mail verschickt.",
+        "punkte": 2
+      },
+      {
+        "text": "Berichte werden auf gemeinsam genutzten Laufwerken abgelegt.",
+        "punkte": 3
+      },
+      {
+        "text": "Die Verteilung der Berichte erfolgt automatisiert und sie werden etwa über SharePoint, BI usw. aufbereitet verfügbar gemacht.",
+        "punkte": 4
+      },
+      {
+        "text": "Die Verteilung der Berichte erfolgt personalisiert basierend auf den Informationsbedürfnissen der Empfänger, welche durch KI identifiziert werden. Jede*r Mitarbeiter*in bekommt ohne viel Suchaufwand in diversen Kanälen alle für ihn*sie relevanten Informationen zur Verfügung gestellt.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Purchase to Pay (P2P)",
+    "unterprozess": "Bedarfsermittlung",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Die Mitarbeiter*innen prüfen Lagerbestände und zukünftige Anforderungen händisch.",
+        "punkte": 0
+      },
+      {
+        "text": "Lagerbestände und Bedarfsdaten werden im ERP-System angezeigt, die Bedarfsermittlung erfolgt jedoch manuell oder über einfache Excel-Auswertungen.",
+        "punkte": 2
+      },
+      {
+        "text": "Das System berechnet die Reichweiten des Lagers und liefert optimale Bestellzeitpunkte oder andere wertvolle Analysen für die manuelle Bedarfsplanung.",
+        "punkte": 3
+      },
+      {
+        "text": "Die Bedarfsermittlung erfolgt vollständig automatisch im ERP-System auf Basis vordefinierter Regeln, Mindestbestände und/oder Aufträgen.",
+        "punkte": 4
+      },
+      {
+        "text": "Ein KI-basiertes System prognostiziert Bedarfsmengen dynamisch unter Berücksichtigung von Trends, Saisonalität, Aufträgen, Lieferzeiten und externen Faktoren.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Purchase to Pay (P2P)",
+    "unterprozess": "Genehmigung des Bedarfs",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Schriftliche Anträge werden persönlich zur Genehmigung vorgelegt.",
+        "punkte": 0
+      },
+      {
+        "text": "Die Bedarfsanforderung wird per E-Mail zur Genehmigung versendet, Genehmigung erfolgt per Mail.",
+        "punkte": 2
+      },
+      {
+        "text": "Der Genehmigungsworkflow ist digital abgebildet, Freigabe erfolgt digital, aber durch menschliche Entscheidungen.",
+        "punkte": 3
+      },
+      {
+        "text": "Workflow-Systeme leiten Anträge automatisch zur Genehmigung weiter. Freigabe erfolgt regelbasiert im ERP-System.",
+        "punkte": 4
+      },
+      {
+        "text": "KI bewertet Anträge vorab und gibt begründete Empfehlungen zur Genehmigung oder Ablehnung.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Purchase to Pay (P2P)",
+    "unterprozess": "Bestellung",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Die Bestellungen werden telefonisch oder schriftlich aufgegeben.",
+        "punkte": 0
+      },
+      {
+        "text": "Die im System erfasste Bestellung kann per E-Mail an Lieferanten übermittelt werden.",
+        "punkte": 2
+      },
+      {
+        "text": "RPA übernimmt die Übermittlung der Bestellung, Mitarbeitende prüfen nur Ausnahmen.",
+        "punkte": 3
+      },
+      {
+        "text": "Bestellungen werden vollständig automatisch generiert und elektronisch übermittelt.",
+        "punkte": 4
+      },
+      {
+        "text": "Die KI wählt optimale Lieferant*innen basierend auf Preis, Lieferzeit und Qualität.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Purchase to Pay (P2P)",
+    "unterprozess": "Wareneingang",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Physische Prüfung und Dokumentation auf Papier.",
+        "punkte": 0
+      },
+      {
+        "text": "Wareneingang wird manuell im ERP erfasst, Abgleich händisch.",
+        "punkte": 2
+      },
+      {
+        "text": "Lieferschein wird gescannt, OCR liest Daten aus, RPA gleicht ab.",
+        "punkte": 3
+      },
+      {
+        "text": "Mobile Geräte buchen Wareneingang ins Lager und gleichen Bestellung ab.",
+        "punkte": 4
+      },
+      {
+        "text": "KI erkennt Wareneingang automatisch und verarbeitet Buchungen autonom.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Purchase to Pay (P2P)",
+    "unterprozess": "Format und Eingang der Eingangsrechnung",
+    "bestpractice": 5,
+    "antworten": [
+      {
+        "text": "Eingangsrechnungen liegen in Papierform vor.",
+        "punkte": 0
+      },
+      {
+        "text": "Eingangsrechnungen liegen in nicht verwertbarer digitaler Form (z. B. PDF) vor.",
+        "punkte": 2
+      },
+      {
+        "text": "Nicht-digitale Rechnungen werden per OCR digitalisiert.",
+        "punkte": 3
+      },
+      {
+        "text": "Großteil der Rechnungen als EDI-Rechnungen vorhanden.",
+        "punkte": 4
+      },
+      {
+        "text": "EDI-Rechnungen + KI zur Aufwandskontierung.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Purchase to Pay (P2P)",
+    "unterprozess": "Formale Prüfung der Eingangsrechnung",
+    "bestpractice": 5,
+    "antworten": [
+      {
+        "text": "Formale Prüfung durch Mitarbeitende.",
+        "punkte": 0
+      },
+      {
+        "text": "Programm erinnert an formale Prüfung bei hohen Beträgen.",
+        "punkte": 2
+      },
+      {
+        "text": "RPA oder KI prüfen teilweise automatisch UID, Steuersätze etc.",
+        "punkte": 3
+      },
+      {
+        "text": "Software prüft automatisch alle formalen Kriterien.",
+        "punkte": 4
+      },
+      {
+        "text": "KI erkennt komplexe Fehler- oder Betrugsmuster.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Purchase to Pay (P2P)",
+    "unterprozess": "Inhaltliche Prüfung der Eingangsrechnung",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Manuelle Freigabe mit Stempeln und Notizen.",
+        "punkte": 0
+      },
+      {
+        "text": "Teilweise automatischer Abgleich, manuelle PDF-Freigabe per Mail.",
+        "punkte": 2
+      },
+      {
+        "text": "DMS verknüpft Rechnungen mit Bestellungen, zentral abrufbar.",
+        "punkte": 3
+      },
+      {
+        "text": "Systemgestützter Abgleich + automatische Freigabe bei definierten Kriterien.",
+        "punkte": 4
+      },
+      {
+        "text": "KI leitet Rechnungen zur richtigen Person und trifft Entscheidungen basierend auf historischen Daten.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Purchase to Pay (P2P)",
+    "unterprozess": "Verbuchung der Eingangsrechnung",
+    "bestpractice": 5,
+    "antworten": [
+      {
+        "text": "Manuelle Buchung.",
+        "punkte": 0
+      },
+      {
+        "text": "Vorlagen verwendet, aber manuelle Eingabe nötig.",
+        "punkte": 2
+      },
+      {
+        "text": "OCR liest Daten, müssen kontrolliert/nachbearbeitet werden.",
+        "punkte": 3
+      },
+      {
+        "text": "Automatische Erkennung & Kontierung inkl. Regelwerken.",
+        "punkte": 4
+      },
+      {
+        "text": "KI kontiert automatisch auf Basis historischer Daten.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Purchase to Pay (P2P)",
+    "unterprozess": "Archivierung der Eingangsrechnung",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Papierablage in Ordnern.",
+        "punkte": 0
+      },
+      {
+        "text": "Scans als PDF auf Server, manuelle Ablage.",
+        "punkte": 2
+      },
+      {
+        "text": "DMS archiviert Rechnungen, OCR extrahiert Metadaten.",
+        "punkte": 3
+      },
+      {
+        "text": "OCR + automatische Zuordnung im System, aus ERP abrufbar.",
+        "punkte": 4
+      },
+      {
+        "text": "KI erkennt Belegarten, lernt Zuordnungen, ermöglicht intelligente Suche.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Purchase to Pay (P2P)",
+    "unterprozess": "OP-Verwaltung Kreditoren",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Manueller Abgleich mit offenen Rechnungen.",
+        "punkte": 0
+      },
+      {
+        "text": "Bankbuchungen manuell, mit Softwarehilfe abgeglichen.",
+        "punkte": 2
+      },
+      {
+        "text": "Bankeinzug eingelesen, aber kein sauberer Skonti-Ausgleich.",
+        "punkte": 3
+      },
+      {
+        "text": "Automatischer Ausgleich inkl. Skonti funktioniert einwandfrei.",
+        "punkte": 4
+      },
+      {
+        "text": "KI erkennt komplexe Zahlungszuordnungen autonom.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Purchase to Pay (P2P)",
+    "unterprozess": "Verbuchung des Zahlungsausgangs",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Manuelle Überweisung durch Mitarbeiter*in.",
+        "punkte": 0
+      },
+      {
+        "text": "Zahlungsvorschlag manuell nachbearbeitet, Datei manuell hochgeladen.",
+        "punkte": 2
+      },
+      {
+        "text": "Zahlungsvorschlag kaum bearbeitet, Datei manuell hochgeladen.",
+        "punkte": 3
+      },
+      {
+        "text": "Zahlung läuft weitgehend ohne manuelle Eingriffe.",
+        "punkte": 4
+      },
+      {
+        "text": "KI prognostiziert Zahlungsströme und optimiert Liquidität.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Order to Cash (O2C)",
+    "unterprozess": "Kundenauftragserfassung",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Mitarbeiter*innen erfassen den Auftrag händisch im ERP- oder CRM-System.",
+        "punkte": 0
+      },
+      {
+        "text": "Kundenaufträge werden z. B. telefonisch erfasst und mit einfachen Tools übertragen.",
+        "punkte": 2
+      },
+      {
+        "text": "Aufträge aus E-Mails oder Webformularen werden mittels OCR oder RPA übernommen.",
+        "punkte": 3
+      },
+      {
+        "text": "Aufträge über EDI oder Kundenportal werden automatisch ins ERP übernommen.",
+        "punkte": 4
+      },
+      {
+        "text": "KI erkennt Inhalte aus verschiedenen Kanälen und erstellt automatisch valide Aufträge.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Order to Cash (O2C)",
+    "unterprozess": "Erstellung der Ausgangsrechnung",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Rechnung wird manuell z. B. mit Word oder auf Papier erstellt.",
+        "punkte": 0
+      },
+      {
+        "text": "Rechnungen werden mit Tabellenkalkulation (z. B. Excel) erstellt.",
+        "punkte": 2
+      },
+      {
+        "text": "RPA erstellt Rechnung basierend auf Auftrag und Lieferschein.",
+        "punkte": 3
+      },
+      {
+        "text": "Rechnungen werden automatisch aus dem Auftrag im ERP-System erstellt.",
+        "punkte": 4
+      },
+      {
+        "text": "KI passt Rechnungslogik automatisch an, erstellt auch via Spracherkennung.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Order to Cash (O2C)",
+    "unterprozess": "Format und Übergabe der Ausgangsrechnung",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Rechnungen werden ausgedruckt und per Post übermittelt.",
+        "punkte": 0
+      },
+      {
+        "text": "Digitale Rechnung wird manuell als PDF per E-Mail versendet.",
+        "punkte": 2
+      },
+      {
+        "text": "Digitale Rechnungen werden mit RPA versendet.",
+        "punkte": 3
+      },
+      {
+        "text": "Rechnungen werden je nach Kundenanforderung automatisch versendet.",
+        "punkte": 4
+      },
+      {
+        "text": "Übertragungsprobleme werden proaktiv erkannt und behoben.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Order to Cash (O2C)",
+    "unterprozess": "Verbuchung der Ausgangsrechnung",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Rechnung wird manuell verbucht.",
+        "punkte": 0
+      },
+      {
+        "text": "Buchung über Vorlagen oder CSV-Import.",
+        "punkte": 2
+      },
+      {
+        "text": "RPA oder KI klassifizieren Rechnungen und schlagen Buchungen vor.",
+        "punkte": 3
+      },
+      {
+        "text": "Vollständige automatisierte Verbuchung direkt im ERP.",
+        "punkte": 4
+      },
+      {
+        "text": "KI prüft automatisch auf Unplausibilitäten und meldet Rückfragen.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Order to Cash (O2C)",
+    "unterprozess": "Archivierung der Ausgangsrechnung",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Papierablage.",
+        "punkte": 0
+      },
+      {
+        "text": "PDFs manuell gespeichert, manuelle Benennung und Ablage.",
+        "punkte": 2
+      },
+      {
+        "text": "DMS archiviert Ausgangsrechnungen mit Metadaten.",
+        "punkte": 3
+      },
+      {
+        "text": "Rechnungen automatisch im DMS, direkt im ERP abrufbar.",
+        "punkte": 4
+      },
+      {
+        "text": "KI ordnet automatisch zu, lernfähig und intelligente Suche möglich.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Order to Cash (O2C)",
+    "unterprozess": "OP-Verwaltung Debitoren",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Zahlungseingänge werden manuell mit offenen Rechnungen abgeglichen.",
+        "punkte": 0
+      },
+      {
+        "text": "Manuelle Buchung mit Softwareunterstützung.",
+        "punkte": 2
+      },
+      {
+        "text": "Bankeinzahlungen werden eingelesen, RPA gleicht teilautomatisiert ab.",
+        "punkte": 3
+      },
+      {
+        "text": "Automatischer Abgleich inkl. Skonti funktioniert einwandfrei.",
+        "punkte": 4
+      },
+      {
+        "text": "KI erkennt auch komplexe Fälle (z. B. Teilzahlungen) und gleicht automatisch ab.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Order to Cash (O2C)",
+    "unterprozess": "Mahnwesen",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Mahnungen werden manuell erstellt und versendet.",
+        "punkte": 0
+      },
+      {
+        "text": "Mahnschreiben werden teilautomatisch vorgeschlagen und angepasst.",
+        "punkte": 2
+      },
+      {
+        "text": "System erstellt Mahnvorschläge, RPA oder KI priorisieren Fälle.",
+        "punkte": 3
+      },
+      {
+        "text": "Automatisches Mahnverfahren gemäß Regeln (z. B. Mahnfristen).",
+        "punkte": 4
+      },
+      {
+        "text": "KI-gestützte Mahnungen mit Kundenverhalten, Tonalität, Risikoanalyse, Chatbot etc.",
+        "punkte": 5
+      }
+    ]
+  },
+  {
+    "hauptprozess": "Order to Cash (O2C)",
+    "unterprozess": "Verbuchung des Zahlungseingangs",
+    "bestpractice": 4,
+    "antworten": [
+      {
+        "text": "Zahlungen werden manuell auf Kund*innen verbucht.",
+        "punkte": 0
+      },
+      {
+        "text": "Zahlungsdateien werden importiert, Zuordnung manuell.",
+        "punkte": 2
+      },
+      {
+        "text": "RPA oder KI unterstützt automatische Zuordnung mit Nachbearbeitung.",
+        "punkte": 3
+      },
+      {
+        "text": "Zahlungseingänge inkl. Skonti werden automatisch verarbeitet.",
+        "punkte": 4
+      },
+      {
+        "text": "KI erkennt Teil- oder Überzahlungen, erstellt Vorschläge oder Anfragen automatisch.",
+        "punkte": 5
+      }
+    ]
+  }
+]

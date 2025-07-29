@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>KIRA-WEB – Fragebogen</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <h1>Fragebogen: Digitalisierungsreifegrad</h1>
+  <div id="fragebereich"></div>
+
+  <script>
+    let fragen = [];
+    let antworten = [];
+    let strukturAntworten = {};
+
+    let prozesse = [];
+    let aktuellerProzess = 0;
+    let aktuelleFrage = 0;
+
+    const prozessbeschreibungen = {
+      "Record to Report (R2R)": "In diesem Abschnitt geht es um die Prozesse, mit denen Sie Ihre Unternehmenszahlen zusammenstellen und auswerten. Dazu zählen zum Beispiel die Umsatzsteuervoranmeldung, die Erstellung von Monatsberichten sowie die interne Verteilung dieser Informationen.",
+      "Purchase to Pay (P2P)": "In diesem Abschnitt beantworten Sie Fragen zu Ihren Beschaffungsprozessen – also alles vom Erkennen eines Bedarfs bis zur Bezahlung einer Eingangsrechnung. Dabei geht es unter anderem um Bedarfsermittlung, Bestellung, Rechnungsprüfung und Zahlungsabwicklung.",
+      "Order to Cash (O2C)": "Hier geht es um Ihre Abläufe im Verkauf – vom Eingang eines Kundenauftrags bis zum Zahlungseingang. Gefragt wird unter anderem, wie Sie Rechnungen erstellen, versenden, archivieren und Zahlungen überwachen."
+    };
+
+    const bestPracticeBeschreibungen = {
+      "Erstellung der UVA": "Umsatzsteuer und Vorsteuer werden automatisch basierend auf Buchungsdaten und Steuerlogiken berechnet. Die UVA wird automatisch generiert und in das korrekte Format für die Übermittlung umgewandelt.",
+      "Abgabe der UVA": "Die elektronische Übermittlung der UVA an das Finanzamt erfolgt automatisch durch die Buchhaltungs- bzw. ERP-Software.",
+      "Erstellung Monatsberichtswesen": "Alle relevanten Finanzdaten werden automatisch im ERP-System erfasst und konsolidiert. Berichte werden automatisch in verschiedenen Formaten erstellt.",
+      "Verteilung von regelmäßigen internen Berichten": "Die Verteilung der Berichte erfolgt automatisiert, z. B. über SharePoint oder BI-Systeme.",
+      "Bedarfsermittlung": "Die Bedarfsermittlung erfolgt automatisch im ERP-System auf Basis vordefinierter Regeln, Mindestbestände oder Aufträge.",
+      "Genehmigung des Bedarfs": "Workflow-Systeme leiten Anträge automatisch zur Genehmigung weiter und dokumentieren den Prozess. Freigaben erfolgen regelbasiert.",
+      "Bestellung": "Bestellungen werden automatisiert aus genehmigten Bedarfen generiert und an Lieferanten übermittelt.",
+      "Wareneingang": "Der Wareneingang wird automatisch erfasst, geprüft und ins System übernommen.",
+      "Format und Eingang der Eingangsrechnung": "Eingangsrechnungen werden in standardisierten Formaten empfangen (z. B. EDI, XML) und automatisch ins ERP-System übernommen.",
+      "Formale Prüfung der Eingangsrechnung": "Formale Prüfungen (Pflichtfelder, Format) erfolgen automatisch im System.",
+      "Inhaltliche Prüfung der Eingangsrechnung": "Die inhaltliche Prüfung erfolgt automatisiert anhand von Bestell- und Wareneingangsdaten.",
+      "Verbuchung der Eingangsrechnung": "Die Verbuchung erfolgt automatisch im ERP-System.",
+      "Archivierung der Eingangsrechnung": "Eingangsrechnungen werden automatisch im DMS archiviert und sind schnell auffindbar.",
+      "OP-Verwaltung Kreditoren": "Offene Posten werden automatisch verwaltet und ausgeglichen.",
+      "Verbuchung des Zahlungsausgangs": "Zahlungsausgänge werden automatisch erstellt, geprüft und verbucht.",
+      "Kundenauftragserfassung": "Kund*innenaufträge werden automatisch über digitale Schnittstellen ins ERP übernommen.",
+      "Erstellung der Ausgangsrechnung": "Ausgangsrechnungen werden automatisch auf Basis gepflegter Stammdaten erstellt.",
+      "Format und Übergabe der Ausgangsrechnung": "Rechnungen werden automatisch im passenden Format (PDF, EDI) an Kund*innen übermittelt.",
+      "Verbuchung der Ausgangsrechnung": "Die Verbuchung erfolgt automatisch im ERP-System.",
+      "Archivierung der Ausgangsrechnung": "Ausgangsrechnungen werden automatisch im DMS archiviert und sind digital abrufbar.",
+      "OP-Verwaltung Debitoren": "Offene Posten werden automatisch abgeglichen, Zahlungen verbucht.",
+      "Mahnwesen": "Mahnungen werden automatisch auf Basis definierter Regeln erstellt und versendet.",
+      "Verbuchung des Zahlungseingangs": "Zahlungseingänge werden automatisch verbucht und zugeordnet."
+    };
+
+    fetch('fragebogen.json')
+      .then(response => response.json())
+      .then(data => {
+        fragen = data;
+
+        const gruppiert = {};
+        data.forEach(f => {
+          if (!gruppiert[f.hauptprozess]) gruppiert[f.hauptprozess] = [];
+          gruppiert[f.hauptprozess].push(f);
+        });
+
+        prozesse = Object.entries(gruppiert).map(([hauptprozess, fragen]) => ({
+          hauptprozess,
+          fragen
+        }));
+
+        zeigeEinleitung();
+      });
+
+    function zeigeEinleitung() {
+      const frageDiv = document.getElementById('fragebereich');
+      frageDiv.innerHTML = '';
+
+      const h2 = document.createElement('h2');
+      h2.textContent = 'Einleitung';
+      frageDiv.appendChild(h2);
+
+      const absatz = document.createElement('p');
+      absatz.innerHTML = `<p>Mit dieser Web-Applikation erfassen Sie den Digitalisierungsreifegrad ausgewählter Prozesse im Rechnungswesen. Bitte wählen Sie jene Tätigkeitsbeschreibung aus, die am ehesten auf Ihre aktuelle Situation (~ 90 % ihrer Sachverhalte) zutrifft. Ausnahmefälle sind nicht zu berücksichtigen. <p>Die Auswertung zeigt Ihnen Ihren persönlichen Digitalisierungsreifegrad je Hauptprozess und einen Vergleich mit einem Best Practice-Zustand. Danach wird Ihnen Ihr persönlicher Reifegrad je Unterprozess angezeigt und es werden Verbesserungspotenziale aufgezeigt.</p><p>Dieser Fragebogen wird anonym ausgefüllt, es werden keine personenbezogenen Daten abgefragt und gespeichert. <p>Die Bearbeitung dauert max. 10 Minuten.</p>`;
+      frageDiv.appendChild(absatz);
+
+      const btn = document.createElement('button');
+      btn.textContent = 'Fragebogen starten';
+      btn.onclick = () => {
+        zeigeProzessIntro();
+      };
+      frageDiv.appendChild(btn);
+    }
+
+    function zeigeProzessIntro() {
+      const frageDiv = document.getElementById('fragebereich');
+      frageDiv.innerHTML = '';
+
+      if (aktuellerProzess >= prozesse.length) {
+        zeigeStrukturfragen();
+        return;
+      }
+
+      const block = prozesse[aktuellerProzess];
+
+      const h2 = document.createElement('h2');
+      h2.textContent = `Abschnitt: ${block.hauptprozess}`;
+      frageDiv.appendChild(h2);
+
+      const p = document.createElement('p');
+      p.textContent = prozessbeschreibungen[block.hauptprozess] || "";
+      frageDiv.appendChild(p);
+
+      const btn = document.createElement('button');
+      btn.textContent = 'Weiter';
+      btn.onclick = () => {
+        aktuelleFrage = 0;
+        zeigeFrage();
+      };
+      frageDiv.appendChild(btn);
+    }
+
+    function zeigeFrage() {
+      const frageDiv = document.getElementById('fragebereich');
+      frageDiv.innerHTML = '';
+
+      const block = prozesse[aktuellerProzess];
+      if (aktuelleFrage >= block.fragen.length) {
+        aktuellerProzess++;
+        zeigeProzessIntro();
+        return;
+      }
+
+      const frage = block.fragen[aktuelleFrage];
+
+      const title = document.createElement('h2');
+      title.textContent = `${frage.hauptprozess} – ${frage.unterprozess}`;
+      frageDiv.appendChild(title);
+
+      frage.antworten.forEach((antwort) => {
+        const button = document.createElement('button');
+        button.textContent = antwort.text;
+        button.style.display = 'block';
+        button.style.margin = '10px 0';
+        button.onclick = () => {
+          antworten.push({ hauptprozess: frage.hauptprozess, unterprozess: frage.unterprozess, punkte: antwort.punkte, best: frage.bestpractice });
+          aktuelleFrage++;
+          zeigeFrage();
+        };
+        frageDiv.appendChild(button);
+      });
+    }
+
+    function zeigeStrukturfragen() {
+      const frageDiv = document.getElementById('fragebereich');
+      frageDiv.innerHTML = '';
+
+      const h2 = document.createElement('h2');
+      h2.textContent = 'Strukturfragen zum Unternehmen';
+      frageDiv.appendChild(h2);
+
+      const form = document.createElement('form');
+
+      // Frage 1: Branche
+      const brancheLabel = document.createElement('label');
+      brancheLabel.textContent = 'In welcher Branche ist ihr Unternehmen hauptsächlich tätig?';
+      const brancheSelect = document.createElement('select');
+      brancheSelect.id = 'branche';
+      [
+        'Land- und Forstwirtschaft, Fischerei', 'Bergbau und Gewinnung von Steinen und Erden', 'Herstellung von Waren und Erzeugnissen aller Art, inkl. Druckerzeugnissen, Bild-, Ton und Datenträgern', 'Bauwirtschaft', 'Gesundheitswesen',
+        'Energieversorgung und Wasserversorgung', 'Baugewerbe oder Bauindustrie', 'Handel mit Waren aller Art', 'Personen- oder Güterbeförderung aller Art', 'Gastronomie und/oder Beherbergung', 'Verlagswesen, Rundfunk sowie Erstellung und Verarbeitung von Medieninhalten','Telekommunikation, Softwareentwicklung, IT-Beratung inkl. Erbringung von sonstigen IT-Dienstleistungen', 'Finanz- und Versicherungsdienstleistungen', 'Vermietung, Verpachtung von Grundstücken, Wohnungen, Häusern', 'Rechts- und Steuerberatung, Wirtschaftsprüfung', 'Unternehmensberatung', 'Forschung und Entwicklung', 'Sonstige Dienstleistungen', 'Gesundheits- und Sozialwesen', 'Sonstige'
+      ].forEach(opt => {
+        const o = document.createElement('option');
+        o.value = opt;
+        o.textContent = opt;
+        brancheSelect.appendChild(o);
+      });
+      form.appendChild(brancheLabel);
+      form.appendChild(brancheSelect);
+      form.appendChild(document.createElement('br'));
+
+      // Frage 2: Mitarbeitendenanzahl
+      const mitarbLabel = document.createElement('label');
+      mitarbLabel.textContent = 'Wie viele Mitarbeiter*innen beschäftigt ihr Unternehmen? Bitte wählen Sie gemäß der (geschätzten) Anzahl vollzeitäquivalent aus.';
+      const mitarbSelect = document.createElement('select');
+      mitarbSelect.id = 'mitarbeitende';
+      ['1–9', '10–49', '50–249', '250+'].forEach(opt => {
+        const o = document.createElement('option');
+        o.value = opt;
+        o.textContent = opt;
+        mitarbSelect.appendChild(o);
+      });
+      form.appendChild(mitarbLabel);
+      form.appendChild(mitarbSelect);
+      form.appendChild(document.createElement('br'));
+
+      // Frage 3: Bundesland
+      const bundeslandLabel = document.createElement('label');
+      bundeslandLabel.textContent = 'In welchem Bundesland hat Ihr Unternehmen die Hauptbetriebsstätte?';
+      const bundeslandSelect = document.createElement('select');
+      bundeslandSelect.id = 'bundesland';
+      [
+        'Burgenland', 'Kärnten', 'Niederösterreich', 'Oberösterreich',
+        'Salzburg', 'Steiermark', 'Tirol', 'Vorarlberg', 'Wien',
+      ].forEach(opt => {
+        const o = document.createElement('option');
+        o.value = opt;
+        o.textContent = opt;
+        bundeslandSelect.appendChild(o);
+      });
+      form.appendChild(bundeslandLabel);
+      form.appendChild(bundeslandSelect);
+      form.appendChild(document.createElement('br'));
+
+      // Absende-Button
+      const btn = document.createElement('button');
+      btn.textContent = 'Auswertung anzeigen';
+      btn.type = 'button';
+      btn.addEventListener('click', function () {
+        
+        strukturAntworten = {
+          branche: document.getElementById('branche').value,
+          mitarbeitende: document.getElementById('mitarbeitende').value,
+          bundesland: document.getElementById('bundesland').value
+        };
+
+        fetch('http://127.0.0.1:5000/fragebogen', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ strukturAntworten: strukturAntworten, antworten: antworten })
+        })
+        .then(response => {
+          if (!response.ok) throw new Error("Fehlerhafte Serverantwort");
+          return response.json();
+        })
+        .then(data => {
+          console.log("✅ Gespeichert, zeige Auswertung");
+          zeigeAuswertung();
+        })
+        .catch(error => {
+          alert("❌ Übertragung fehlgeschlagen. Bitte später erneut versuchen.");
+          console.error(error);
+          zeigeAuswertung(); // Zeige Auswertung trotzdem an
+        });
+      });
+
+      btn.style.marginTop = '20px';
+      form.appendChild(btn);
+
+      frageDiv.appendChild(form);
+    }
+
+    function reifegradText(prozent) {
+      if (prozent < 20) return "Stufe 1: Digitale Neulinge";
+      if (prozent < 40) return "Stufe 2: Digitale Anfänger*innen";
+      if (prozent < 60) return "Stufe 3: Digitale Anwender*innen";
+      if (prozent < 80) return "Stufe 4: Digitale Gewandte";
+      return "Stufe 5: Digitale Expert*innen";
+    }
+
+    function zeigeAuswertung() {
+      console.log('▶️ Start Auswertung');
+      const frageDiv = document.getElementById('fragebereich');
+      frageDiv.innerHTML = '';
+
+      const punkteProHauptprozess = {};
+      const maxProHauptprozess = {};
+      const bestProHauptprozess = {};
+      
+      const unterprozessAntworten = {};
+
+      antworten.forEach((a) => {
+        const hp = a.hauptprozess;
+        if (!punkteProHauptprozess[hp]) {
+          punkteProHauptprozess[hp] = 0;
+          maxProHauptprozess[hp] = 0;
+          bestProHauptprozess[hp] = 0;
+          unterprozessAntworten[hp] = [];
+        }
+        punkteProHauptprozess[hp] += a.punkte;
+        maxProHauptprozess[hp] += 5; 
+        bestProHauptprozess[hp] += a.best;
+        unterprozessAntworten[hp].push(a);
+      });
+
+      const labels = Object.keys(punkteProHauptprozess);
+      const werte = labels.map(hp =>
+        Math.round((punkteProHauptprozess[hp] / maxProHauptprozess[hp]) * 100)
+      );
+      const bestwerte = labels.map(hp =>
+        Math.round((bestProHauptprozess[hp] / maxProHauptprozess[hp]) * 100)
+      );
+
+      const ergebnis = document.createElement('h2');
+      ergebnis.textContent = `Ihre Gesamtauswertung im Vergleich zum Best Practice`;
+      frageDiv.appendChild(ergebnis);
+
+      const canvas = document.createElement('canvas');
+      canvas.id = 'radarChart';
+      canvas.style.maxWidth = '600px';
+      canvas.style.maxHeight = '500px';
+      canvas.style.width = '100%';
+      frageDiv.appendChild(canvas);
+      
+      const textauswertungGesamt = document.createElement("div");
+      textauswertungGesamt.style.marginTop = "20px";
+
+      labels.forEach((hp, i) => {
+          const p = document.createElement("p");
+          const prozent = werte[i];
+          const best = bestwerte[i];
+          let text = `Im Bereich '${hp}' erreicht Ihr Unternehmen einen Reifegrad von ${prozent} %. `;
+          text += `Das entspricht der ${reifegradText(prozent)}.`;
+          if (prozent < best) {
+            text += ` Im Vergleich zum Best Practice (${best} %) besteht Verbesserungspotenzial.`;
+          } else if (prozent === best) {
+            text += ` Sie erreichen damit den Best Practice-Wert (${best} %).`;
+          } else {
+            text += ` Sie liegen damit über dem aktuellen Best Practice (${best} %).`;
+          }
+          p.textContent = text;
+          textauswertungGesamt.appendChild(p);
+      });
+      frageDiv.appendChild(textauswertungGesamt);
+
+      new Chart(canvas, {
+        type: 'radar',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Ihr Unternehmen',
+              data: werte,
+              fill: true,
+              borderColor: 'rgba(0, 123, 255, 1)',
+              backgroundColor: 'rgba(0, 123, 255, 0.2)'
+            },
+            {
+              label: 'Best Practice',
+              data: bestwerte,
+              fill: false,
+              borderColor: 'rgba(40, 167, 69, 1)',
+              borderDash: [5, 5]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            r: {
+              min: 0,
+              max: 100,
+              ticks: { stepSize: 20 }
+            }
+          },
+          plugins: {
+            legend: {
+              position: 'top'
+            },
+            title: {
+              display: false
+            }
+          }
+        }
+      });
+
+      Object.keys(unterprozessAntworten).forEach(hauptprozess => {
+        const daten = unterprozessAntworten[hauptprozess];
+        const unterprozesse = daten.map(e => e.unterprozess);
+        const werte = daten.map(e => Math.round((e.punkte / 5) * 100));
+        const bestwerte = daten.map(e => Math.round((e.best / 5) * 100));
+
+        const hr = document.createElement("hr");
+        frageDiv.appendChild(hr);
+
+        const h3 = document.createElement("h3");
+        h3.textContent = `Detaillierte Auswertung für ${hauptprozess}`;
+        frageDiv.appendChild(h3);
+
+        const canvas = document.createElement("canvas");
+        canvas.id = `canvas-${hauptprozess.replace(/\s+/g, "-")}`;
+        canvas.style.maxWidth = "600px";
+        canvas.style.maxHeight = "500px";
+        canvas.style.width = "100%";
+        frageDiv.appendChild(canvas);
+
+        new Chart(canvas, {
+          type: 'radar',
+          data: {
+            labels: unterprozesse,
+            datasets: [
+              {
+                label: 'Ihr Unternehmen',
+                data: werte,
+                fill: true,
+                borderColor: 'rgba(0, 123, 255, 1)',
+                backgroundColor: 'rgba(0, 123, 255, 0.2)'
+              },
+              {
+                label: 'Best Practice',
+                data: bestwerte,
+                fill: false,
+                borderColor: 'rgba(40, 167, 69, 1)',
+                borderDash: [5, 5]
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              r: {
+                min: 0,
+                max: 100,
+                ticks: { stepSize: 20 }
+              }
+            },
+            plugins: {
+              legend: {
+                position: 'top'
+              },
+              title: {
+                display: false
+              }
+            }
+          }
+        });
+
+        const textauswertungDetail = document.createElement("div");
+        textauswertungDetail.style.marginTop = "20px";
+        
+        // --- FINALE KORREKTUR HIER ---
+        daten.forEach((e, i) => {
+            const prozent = werte[i];
+            const best = bestwerte[i];
+            
+            if (prozent < best) {
+                const p = document.createElement("p");
+                let text = `Im Unterprozess '${e.unterprozess}' liegt Ihr Unternehmen mit ${prozent}% unter dem Best Practice von ${best}%.`;
+                
+                if (bestPracticeBeschreibungen[e.unterprozess]) {
+                    text += ` Der Best Practice sieht vor: ${bestPracticeBeschreibungen[e.unterprozess]}`;
+                }
+                p.textContent = text;
+                textauswertungDetail.appendChild(p);
+            }
+        });
+        frageDiv.appendChild(textauswertungDetail);
+
+      });
+
+      const neuStartBtn = document.createElement("button");
+      neuStartBtn.textContent = "Neuen Fragebogen starten";
+      neuStartBtn.style.marginTop = "30px";
+      neuStartBtn.onclick = () => location.reload();
+      frageDiv.appendChild(neuStartBtn);
+
+      const pdfBtn = document.createElement("button");
+      pdfBtn.textContent = "Ergebnisse als PDF speichern";
+      pdfBtn.style.marginTop = "10px";
+      pdfBtn.onclick = () => { console.log("PDF Button geklickt"); console.log("jsPDF verfügbar:", window.jspdf); exportPDF(); };
+      frageDiv.appendChild(pdfBtn);
+      
+      console.log('✅ Auswertung fertig')
+    }
+  </script>
+
+<script>
+function exportPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  // Deckblatt
+  doc.setFontSize(20);
+  doc.setFont("helvetica", "bold");
+  doc.text("Ergebnisse Digitalisierungsreifegrad", 20, 40);
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "normal");
+  doc.text("Datum: " + new Date().toLocaleDateString("de-DE"), 20, 55);
+  doc.addPage();
+
+  // Hauptprozess-Diagramm
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.text("Hauptprozesse – Übersicht", 20, 20);
+
+  const chartCanvas = document.getElementById('radarChart');
+  if (chartCanvas) {
+    const chartImage = chartCanvas.toDataURL('image/png');
+    doc.addImage(chartImage, 'PNG', 15, 30, 180, 100);
+  }
+
+  let yPos = 140;
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  document.querySelectorAll("#fragebereich > div > p").forEach(p => {
+    const text = doc.splitTextToSize(p.textContent, 170);
+    if (yPos + text.length * 7 > 280) {
+      doc.addPage();
+      yPos = 20;
+    }
+    doc.text(text, 20, yPos);
+    yPos += text.length * 7;
+  });
+
+  // Unterprozess-Diagramme
+  document.querySelectorAll("canvas[id^='canvas-']").forEach((canvas, idx) => {
+    doc.addPage();
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text(`Unterprozess-Diagramm ${idx+1}`, 20, 20);
+    
+    const canvasImage = canvas.toDataURL('image/png');
+    doc.addImage(canvasImage, 'PNG', 15, 30, 180, 100);
+    
+    let subTextY = 140;
+    doc.setFontSize(11);
+    doc.setFont("helvetica", "normal");
+
+    const textBlock = canvas.nextElementSibling;
+    if (textBlock) {
+      const paragraphs = textBlock.querySelectorAll("p");
+      paragraphs.forEach(p => {
+        const t = doc.splitTextToSize(p.textContent, 170);
+        if (subTextY + t.length * 7 > 280) {
+          doc.addPage();
+          subTextY = 20;
+        }
+        doc.text(t, 20, subTextY);
+        subTextY += t.length * 7;
+      });
+    }
+  });
+
+  doc.save("Ergebnisse_Digitalisierungsreifegrad.pdf");
+}
+</script>
+
+
+<script>
+function exportPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  function addChartImage(doc, canvas, x, y, maxWidth) {
+    if (canvas) {
+      const aspectRatio = canvas.width / canvas.height;
+      const width = maxWidth;
+      const height = width / aspectRatio;
+      const chartImage = canvas.toDataURL('image/png');
+      doc.addImage(chartImage, 'PNG', x, y, width, height);
+      return y + height + 10;
+    }
+    return y;
+  }
+
+  // --- Deckblatt ---
+  doc.setFontSize(22);
+  doc.setFont("helvetica", "bold");
+  doc.text("Ihr Digitalisierungsreifegrad", 20, 40);
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "normal");
+  doc.text("Datum: " + new Date().toLocaleDateString("de-DE"), 20, 55);
+  doc.setFontSize(12);
+  doc.text("Wir danken für die Nutzung unseres Services zum Vergleich Ihres Digitalisierungsreifegrades mit dem Best Practice.", 20, 70, {maxWidth: 170});
+  doc.text("Nachstehend finden Sie die Detailergebnisse.", 20, 80, {maxWidth: 170});
+  doc.addPage();
+
+  // --- Hauptprozesse ---
+  doc.setFontSize(18);
+  doc.setFont("helvetica", "bold");
+  doc.text("Reifegrad Ihrer Hauptprozesse", 20, 20);
+
+  let yPos = addChartImage(doc, document.getElementById('radarChart'), 20, 30, 170);
+
+  doc.setFontSize(12);
+  document.querySelectorAll("#fragebereich > div > p").forEach(p => {
+    const text = doc.splitTextToSize(p.textContent, 170);
+    if (yPos + text.length * 7 > 280) {
+      doc.addPage();
+      yPos = 20;
+    }
+    doc.text(text, 20, yPos);
+    yPos += text.length * 7;
+  });
+
+  // --- Details je Hauptprozess ---
+  ["Record to Report (R2R)", "Purchase to Pay (P2P)", "Order to Cash (O2C)"].forEach(prozess => {
+    const canvas = document.getElementById(`canvas-${prozess.replace(/\s+/g, "-")}`);
+    if (canvas) {
+      doc.addPage();
+      doc.setFontSize(16);
+      doc.setFont("helvetica", "bold");
+      doc.text(`Details zum Hauptprozess ${prozess}`, 20, 20);
+
+      let subTextY = addChartImage(doc, canvas, 20, 30, 170);
+
+      doc.setFontSize(12);
+      const section = canvas.nextElementSibling;
+      if (section) {
+        const paragraphs = section.querySelectorAll("p");
+        paragraphs.forEach(p => {
+          if (p.textContent.includes("unter dem Best Practice")) { // nur negative Abweichungen
+            const t = doc.splitTextToSize(p.textContent, 170);
+            if (subTextY + t.length * 7 > 280) {
+              doc.addPage();
+              subTextY = 20;
+            }
+            doc.text(t, 20, subTextY);
+            subTextY += t.length * 7;
+          }
+        });
+      }
+    }
+  });
+
+  // --- Impressum ---
+  doc.addPage();
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("Impressum", 20, 20);
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text("Dieses Service zum Vergleich Ihres Digitalisierungsreifegrades mit dem Best Practice wird Ihnen zur Verfügung gestellt von:", 20, 40, {maxWidth: 170});
+  doc.text("FH CAMPUS 02", 20, 55);
+  doc.text("Department Rechnungswesen & Controlling", 20, 62);
+  doc.text("Körblergasse 126, A-8010 Graz", 20, 69);
+  doc.text("Für weitere Informationen wenden Sie sich an rwc@campus02.at", 20, 78, {maxWidth: 170});
+
+  doc.save("Ergebnisse_Digitalisierungsreifegrad.pdf");
+}
+</script>
+
+
+<script>
+function exportPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  function addChartImage(doc, canvas, x, y, maxWidth) {
+    if (canvas) {
+      const aspectRatio = canvas.width / canvas.height;
+      const width = maxWidth;
+      const height = width / aspectRatio;
+      const chartImage = canvas.toDataURL('image/png');
+      doc.addImage(chartImage, 'PNG', x, y, width, height);
+      return y + height + 10;
+    }
+    return y;
+  }
+
+  // --- Deckblatt ---
+  doc.setFontSize(22);
+  doc.setFont("helvetica", "bold");
+  doc.text("Ihr Digitalisierungsreifegrad", 20, 40);
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "normal");
+  doc.text("Datum: " + new Date().toLocaleDateString("de-DE"), 20, 55);
+  doc.setFontSize(12);
+  doc.text("Wir danken für die Nutzung unseres Services zum Vergleich Ihres Digitalisierungsreifegrades mit dem Best Practice.", 20, 70, {maxWidth: 170});
+  doc.text("Nachstehend finden Sie die Detailergebnisse.", 20, 80, {maxWidth: 170});
+  doc.addPage();
+
+  // --- Seite 2: Hauptprozesse ---
+  doc.setFontSize(18);
+  doc.setFont("helvetica", "bold");
+  doc.text("Reifegrad Ihrer Hauptprozesse", 20, 20);
+
+  let yPos = addChartImage(doc, document.getElementById('radarChart'), 20, 30, 170);
+
+  // Nur Absätze mit Hauptprozessnamen
+  doc.setFontSize(12);
+  document.querySelectorAll("#fragebereich > div > p").forEach(p => {
+    if (p.textContent.includes("Record to Report") || p.textContent.includes("Purchase to Pay") || p.textContent.includes("Order to Cash")) {
+      const text = doc.splitTextToSize(p.textContent, 170);
+      if (yPos + text.length * 7 > 280) {
+        doc.addPage();
+        yPos = 20;
+      }
+      doc.text(text, 20, yPos);
+      yPos += text.length * 7;
+    }
+  });
+
+  // --- Details je Hauptprozess ---
+  ["Record to Report (R2R)", "Purchase to Pay (P2P)", "Order to Cash (O2C)"].forEach(prozess => {
+    const canvas = document.getElementById(`canvas-${prozess.replace(/\s+/g, "-")}`);
+    if (canvas) {
+      doc.addPage();
+      doc.setFontSize(16);
+      doc.setFont("helvetica", "bold");
+      doc.text(`Details zum Hauptprozess ${prozess}`, 20, 20);
+
+      let subTextY = addChartImage(doc, canvas, 20, 30, 170);
+
+      doc.setFontSize(12);
+      const section = canvas.nextElementSibling;
+      if (section) {
+        const paragraphs = section.querySelectorAll("p");
+        paragraphs.forEach(p => {
+          if (p.textContent.includes("unter dem Best Practice")) { // nur negative Abweichungen Unterprozesse
+            const t = doc.splitTextToSize(p.textContent, 170);
+            if (subTextY + t.length * 7 > 280) {
+              doc.addPage();
+              subTextY = 20;
+            }
+            doc.text(t, 20, subTextY);
+            subTextY += t.length * 7;
+          }
+        });
+      }
+    }
+  });
+
+  // --- Impressum ---
+  doc.addPage();
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("Impressum", 20, 20);
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text("Dieses Service zum Vergleich Ihres Digitalisierungsreifegrades mit dem Best Practice wird Ihnen zur Verfügung gestellt von:", 20, 40, {maxWidth: 170});
+  doc.text("FH CAMPUS 02", 20, 55);
+  doc.text("Department Rechnungswesen & Controlling", 20, 62);
+  doc.text("Körblergasse 126, A-8010 Graz", 20, 69);
+  doc.text("Für weitere Informationen wenden Sie sich an rwc@campus02.at", 20, 78, {maxWidth: 170});
+
+  // --- Speichern ---
+  doc.save("Ergebnisse_Digitalisierungsreifegrad.pdf");
+}
+</script>
+
+</body>
+</html>
