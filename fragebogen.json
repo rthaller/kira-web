@@ -5,23 +5,23 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Wir sammeln die umsatzrelevanten Daten manuell aus Belegen, Rechnungen und Kontenlisten.",
+        "text": "Wir entnehmen die relevanten Daten für die Umsatzsteuervoranmeldung immer einzelnen und händisch aus den Belegen, Rechnungen und Kontenlisten.",
         "punkte": 0
       },
       {
-        "text": "Einige Daten für die Umsatzsteuervoranmeldung werden automatisch aus dem Buchhaltungssystem übernommen, müssen aber manuell überprüft, ergänzt oder korrigiert werden.",
+        "text": "Einige Daten für die Umsatzsteuervoranmeldung (UVA) werden automatisch aus dem Buchhaltungssystem übernommen, müssen aber manuell überprüft, ergänzt oder korrigiert werden.",
         "punkte": 2
       },
       {
-        "text": "Die Daten für die Umsatzsteuervoranmeldung werden automatisiert aggregiert und mithilfe von RPA oder KI analysiert und zugeordnet.",
+        "text": "Robotic Process Automation (RPA) oder Künstliche Intelligenz (KI) wird eingesetzt, um die Daten für die Umsatzsteuervoranmeldung aufzubereiten, weil beispielsweise die Standardfunktionen der Buchhaltungssoftware nicht reichen oder Daten aus mehreren Systemen konsolidiert werden.",
         "punkte": 3
       },
       {
-        "text": "Umsatzsteuer und Vorsteuer werden automatisch basierend auf Buchungsdaten und Steuerlogiken berechnet. Die UVA wird automatisch generiert und in das korrekte Format für die Übermittlung umgewandelt.",
+        "text": "Umsatzsteuer und Vorsteuer werden automatisch basierend auf Buchungsdaten und Steuerlogiken berechnet. Die UVA wird automatisch aus den Buchhaltungsdaten generiert und in das korrekte Format für die Übermittlung umgewandelt.",
         "punkte": 4
       },
       {
-        "text": "Die UVA wird automatisch generiert und in das korrekte Format für die Übermittlung umgewandelt. Eine KI überprüft die UVA auf Unstimmigkeiten und potenzielle Fehler, bevor die Abgabe erfolgt.",
+        "text": "Die UVA wird automatisch generiert und in das korrekte Format für die Übermittlung umgewandelt. Eine KI überprüft zusätzlich die UVA auf Unstimmigkeiten und potenzielle Fehler, bevor die Abgabe erfolgt.",
         "punkte": 5
       }
     ]
@@ -32,19 +32,19 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Die Umsatzsteuervoranmeldung wird physisch beim Finanzamt eingereicht.",
+        "text": "Die Umsatzsteuervoranmeldung wird in Papierform beim Finanzamt eingereicht.",
         "punkte": 0
       },
       {
-        "text": "Die Eingabe über FinanzOnline erfolgt zumindest teilweise manuell.",
+        "text": "Die Eingabe über FinanzOnline erfolgt zumindest teilweise manuell, indem zumindest teilweise Daten händisch in das vorgegebene Feld eingetragen werden.",
         "punkte": 2
       },
       {
-        "text": "Die von der Buchhaltungs- bzw. ERP-Software erstellte XML-Datei wird manuell im FinanzOnline hochgeladen.",
+        "text": "Die von der Buchhaltungs- bzw. ERP-Software erstellte Übermittlungsdatei (XML-Datei) wird manuell in FinanzOnline hochgeladen.",
         "punkte": 3
       },
       {
-        "text": "Die elektronische Übermittlung der UVA an das Finanzamt erfolgt automatisch durch die Buchhaltungs- bzw. ERP-Software.",
+        "text": "Die elektronische Übermittlung der UVA an das Finanzamt erfolgt automatisiert nach manueller Freigabe durch die Buchhaltungs- bzw. ERP-Software.",
         "punkte": 4
       },
       {
@@ -59,7 +59,7 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Es werden keine oder manuelle Monatsberichte wie bspw. eine monatliche GuV erstellt. Im Falle eines manuellen Berichts erfolgt die Berechnung mit Hilfe von Tabellenkalkulationsprogrammen (z. B. Excel), aber ohne Integration von Datenquellen.",
+        "text": "Es werden keine oder manuelle Monatsberichte wie bspw. eine monatliche Gewinn- und Verlustrechnung (GuV) erstellt. Im Falle eines manuellen Berichts erfolgt die Berechnung mit Hilfe von Tabellenkalkulationsprogrammen (z. B. Excel), aber ohne Integration von Datenquellen.",
         "punkte": 0
       },
       {
@@ -67,7 +67,7 @@
         "punkte": 2
       },
       {
-        "text": "Ein Großteil der Berichtsdaten wird automatisiert aus integrierten Systemen zusammengeführt. RPA oder KI-basierte Tools unterstützen bei der Strukturierung und Kommentierung der Daten. Die Berichte müssen nur noch inhaltlich final überprüft werden.",
+        "text": "Ein Großteil der Berichtsdaten wird automatisiert aus integrierten Systemen zusammengeführt. Robotic Process Automation (RPA) oder KI-basierte Tools unterstützen bei der Strukturierung und Kommentierung der Daten. Die Berichte müssen nur noch inhaltlich final überprüft werden.",
         "punkte": 3
       },
       {
@@ -75,7 +75,7 @@
         "punkte": 4
       },
       {
-        "text": "KI-Systeme können Finanzberichte automatisch generieren, indem sie relevante Daten aus verschiedenen Quellen sammeln und analysieren. Durch den Einsatz von KI-Techniken (wie maschinellem Lernen) können Finanzdaten analysiert werden, um Einblicke in Geschäftstrends, Umsatzprognosen, Kosteneffizienz und finanzielle Risiken zu gewinnen. Dies kann bei der strategischen Planung und Entscheidungsfindung unterstützen. KI optimiert Kontenpläne und berechnet automatisch komplexe zukünftige GuV-Szenarien, z. B. nach Abteilungen, Projekten oder Geschäftseinheiten.",
+        "text": "KI-Systeme können Finanzberichte automatisch generieren, indem sie relevante Daten aus verschiedenen Quellen sammeln und analysieren. Durch den Einsatz von KI-Techniken (wie maschinellem Lernen) können Finanzdaten analysiert werden, um Einblicke in Geschäftstrends, Umsatzprognosen, Kosteneffizienz und finanzielle Risiken zu gewinnen. Dies kann bei der strategischen Planung und Entscheidungsfindung unterstützen. KI optimiert Kontenpläne und berechnet automatisch komplexe zukünftige GuV-Szenarien, z. B. nach Abteilungen, Projekten oder Geschäftseinheiten.",
         "punkte": 5
       }
     ]
@@ -86,23 +86,23 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Die Berichte werden ausgedruckt und übergeben, oder es gibt keine monatlichen Berichte.",
+        "text": "Monatsberichte liegen entweder nicht vor oder werden, sofern vorhanden, in gedruckter Form erstellt und weitergegeben.",
         "punkte": 0
       },
       {
-        "text": "Berichte werden z. B. als PDF- oder Excel-Dateien manuell per Mail verschickt.",
+        "text": "Berichte werden z. B. als PDF- oder Excel-Dateien manuell per E-Mail an die Berichtsempfänger*innen verschickt.",
         "punkte": 2
       },
       {
-        "text": "Berichte werden auf gemeinsam genutzten Laufwerken abgelegt.",
+        "text": "Berichte werden auf gemeinsam genutzten Laufwerken oder direkt im Buchhaltungs- oder ERP-System abgelegt.",
         "punkte": 3
       },
       {
-        "text": "Die Verteilung der Berichte erfolgt automatisiert und sie werden etwa über SharePoint, BI usw. aufbereitet verfügbar gemacht.",
+        "text": "Die Verteilung der Berichte erfolgt automatisiert; die Aufbereitung und Bereitstellung erfolgt beispielsweise über SharePoint, Business-Intelligence-Systeme (wie Microsoft PowerBI) oä.",
         "punkte": 4
       },
       {
-        "text": "Die Verteilung der Berichte erfolgt personalisiert basierend auf den Informationsbedürfnissen der Empfänger, welche durch KI identifiziert werden. Jede*r Mitarbeiter*in bekommt ohne viel Suchaufwand in diversen Kanälen alle für ihn*sie relevanten Informationen zur Verfügung gestellt.",
+        "text": "Die Verteilung der Berichte erfolgt personalisiert basierend auf den Informationsbedürfnissen der Empfänger*innen, welche durch KI identifiziert werden. Jede*r Mitarbeiter*in bekommt ohne viel Suchaufwand in diversen Kanälen alle für ihn*sie relevanten Informationen zur Verfügung gestellt.",
         "punkte": 5
       }
     ]
@@ -144,7 +144,7 @@
         "punkte": 0
       },
       {
-        "text": "Die Bedarfsanforderung wird per E-Mail zur Genehmigung versendet, Genehmigung erfolgt per Mail.",
+        "text": "Die Bedarfsanforderung wird per E-Mail zur Genehmigung versendet, die Genehmigung erfolgt per E-Mail.",
         "punkte": 2
       },
       {
@@ -152,11 +152,11 @@
         "punkte": 3
       },
       {
-        "text": "Workflow-Systeme leiten Anträge automatisch zur Genehmigung weiter. Freigabe erfolgt regelbasiert im ERP-System.",
+        "text": "Workflow-Systeme leiten Anträge automatisch zur Genehmigung weiter. Freigabe erfolgt regelbasiert im ERP-System. Bei definierten Parametern (z. B. Betrag, Artikel, Kostenstelle) wird die Freigabe automatisch erteilt.",
         "punkte": 4
       },
       {
-        "text": "KI bewertet Anträge vorab und gibt begründete Empfehlungen zur Genehmigung oder Ablehnung.",
+        "text": "Workflow-Systeme leiten Anträge automatisch zur regelbasierten Genehmigung weiter. Bei nicht Erfüllung der Parameter bewertet die KI die Anträge vorab und gibt begründete Empfehlungen zur Genehmigung oder Ablehnung.",
         "punkte": 5
       }
     ]
@@ -171,19 +171,19 @@
         "punkte": 0
       },
       {
-        "text": "Die im System erfasste Bestellung kann per E-Mail an Lieferanten übermittelt werden.",
+        "text": "Die im System erfasste Bestellung kann per E-Mail an Zulieferunternehmen übermittelt werden.",
         "punkte": 2
       },
       {
-        "text": "RPA übernimmt die Übermittlung der Bestellung, Mitarbeitende prüfen nur Ausnahmen.",
+        "text": "Robotic Process Automation (RPA) übernimmt die Übermittlung der Bestellung an das Zulieferunternehmen per EDI (Electronic Data Interchange), Portal oder E-Mail. Mitarbeitende prüfen nur Ausnahmen oder Sonderfälle.",
         "punkte": 3
       },
       {
-        "text": "Bestellungen werden vollständig automatisch generiert und elektronisch übermittelt.",
+        "text": "Bestellungen werden vollständig automatisch auf Basis von Bedarf und Freigaben generiert und über standardisierte Schnittstellen (z. B. EDI) an die Zulieferunternehmen übermittelt - ohne manuellen Eingriff.",
         "punkte": 4
       },
       {
-        "text": "Die KI wählt optimale Lieferant*innen basierend auf Preis, Lieferzeit und Qualität.",
+        "text": "Die KI wählt optimale Zulieferunternehmen basierend auf Preis, Lieferzeit und Qualität aus und initiiert Bestellung autonom.",
         "punkte": 5
       }
     ]
@@ -194,23 +194,23 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Physische Prüfung und Dokumentation auf Papier.",
+        "text": "Es erfolgt eine physische Prüfung und Dokumentation des Wareneingangs auf Papier.",
         "punkte": 0
       },
       {
-        "text": "Wareneingang wird manuell im ERP erfasst, Abgleich händisch.",
+        "text": "Der Wareneingang wird im ERP-System manuell erfasst. Der Abgleich mit Bestellung und Lieferschein erfolgt händisch, die Dokumentation erfolgt digital, aber ohne Automatisierung.",
         "punkte": 2
       },
       {
-        "text": "Lieferschein wird gescannt, OCR liest Daten aus, RPA gleicht ab.",
+        "text": "Der physische Lieferschein wird eingescannt und per OCR-Technologie ausgelesen. Ein RPA-Prozess (Robotic Process Automation) gleicht die Daten automatisch mit der Bestellung ab und erfasst den Wareneingang. Nur bei Abweichungen ist manuelles Eingreifen erforderlich.",
         "punkte": 3
       },
       {
-        "text": "Mobile Geräte buchen Wareneingang ins Lager und gleichen Bestellung ab.",
+        "text": "Mittels mobiler Datenerfassungsgeräte wird der Wareneingang aufgenommen, ins Lager eingebucht und in Echtzeit mit der Bestellung abgeglichen.",
         "punkte": 4
       },
       {
-        "text": "KI erkennt Wareneingang automatisch und verarbeitet Buchungen autonom.",
+        "text": "Ein KI-gestütztes System erkennt den Wareneingang automatisch über digitale Lieferscheine, prüft Mengen- und Qualitätsabweichungen in Echtzeit und verarbeitet alle Buchungen autonom.",
         "punkte": 5
       }
     ]
@@ -221,23 +221,23 @@
     "bestpractice": 5,
     "antworten": [
       {
-        "text": "Eingangsrechnungen liegen in Papierform vor.",
+        "text": "Eingangsrechnungen liegen in Papierform vor und werden nicht digitalisiert.",
         "punkte": 0
       },
       {
-        "text": "Eingangsrechnungen liegen in nicht verwertbarer digitaler Form (z. B. PDF) vor.",
+        "text": "Eingangsrechnungen liegen in nicht verwertbarer digitaler Form (z. B. PDF) vor und werden nicht weiter digital verarbeitet.",
         "punkte": 2
       },
       {
-        "text": "Nicht-digitale Rechnungen werden per OCR digitalisiert.",
+        "text": "Rechnungen in Papierform oder auch PDF-Rechnungen werden mittels Texterkennung (OCR) digitalisiert.",
         "punkte": 3
       },
       {
-        "text": "Großteil der Rechnungen als EDI-Rechnungen vorhanden.",
+        "text": "Ein Großteil der Rechnungen ist als EDI-Rechnung (Electronic Data Interchange) vorhanden.",
         "punkte": 4
       },
       {
-        "text": "EDI-Rechnungen + KI zur Aufwandskontierung.",
+        "text": "Ein Großteil der Eingangsrechnungen sind elektronisch direkt verwertbare Rechnungen (EDI-Rechnungen). Die KI unterstützt bei Aufwandskontierung.",
         "punkte": 5
       }
     ]
@@ -248,23 +248,23 @@
     "bestpractice": 5,
     "antworten": [
       {
-        "text": "Formale Prüfung durch Mitarbeitende.",
+        "text": "Mitarbeiter*innen prüfen Rechnungen auf formale Richtigkeit.",
         "punkte": 0
       },
       {
-        "text": "Programm erinnert an formale Prüfung bei hohen Beträgen.",
+        "text": "Das Buchhaltung- oder ERP-Programm unterstützt bei der manuellen Prüfung. Das Programm macht bei Rechnungen über 10.000 Euro darauf aufmerksam, dass die Formalkriterien zu prüfen sind.",
         "punkte": 2
       },
       {
-        "text": "RPA oder KI prüfen teilweise automatisch UID, Steuersätze etc.",
+        "text": "Die Rechnungen werden mit Hilfe von RPA- oder KI-basierten Regeln TEILWEISE automatisch auf formale Inhalte wie UID, Steuersätze oder fehlende Pflichtfelder geprüft.",
         "punkte": 3
       },
       {
-        "text": "Software prüft automatisch alle formalen Kriterien.",
+        "text": "Die Software prüft automatisch ALLE formalen Kriterien der Rechnung wie UID-Nummer, Steuersätze oder fehlende Pflichtfelder.",
         "punkte": 4
       },
       {
-        "text": "KI erkennt komplexe Fehler- oder Betrugsmuster.",
+        "text": "Software prüft automatisch alle formalen Kriterien der Rechnung. KI erkennt komplexe Fehler- oder Betrugsmuster bei Rechnungen.",
         "punkte": 5
       }
     ]
@@ -275,23 +275,23 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Manuelle Freigabe mit Stempeln und Notizen.",
+        "text": "Abgleich der Rechnung mit Bestellungen und Lieferscheinen durch Mitarbeiter*in. Rechnungen werden manuell an die zuständigen Personen weitergeleitet, Rechnungen werden mit Stempeln, Unterschriften oder handschriftlichen Notizen freigegeben. Freigegebene Rechnungen werden an die Buchhaltung zurückgegeben, oft mit handschriftlichen Notizen.",
         "punkte": 0
       },
       {
-        "text": "Teilweise automatischer Abgleich, manuelle PDF-Freigabe per Mail.",
+        "text": "Abgleich von Rechnungsdaten mit Bestellungen oder Lieferscheinen erfolgt teilweise automatisiert. Rechnungen werden als PDF-Dokumente per E-Mail an die zuständigen Personen gesendet, Rechnungen werden digital markiert, kommentiert oder freigegeben.",
         "punkte": 2
       },
       {
-        "text": "DMS verknüpft Rechnungen mit Bestellungen, zentral abrufbar.",
+        "text": "Ein Dokumentenmanagementsystem (DMS) unterstützt den inhaltlichen Freigabeprozess. Eingehende Rechnungen, Lieferscheine und Bestellungen werden automatisch verknüpft und sind zentral abrufbar.",
         "punkte": 3
       },
       {
-        "text": "Systemgestützter Abgleich + automatische Freigabe bei definierten Kriterien.",
+        "text": "Rechnungen werden systemgestützt mit Bestellungen, Wareneingängen und Vertragsbedingungen verglichen. Automatisierte Workflows leiten Rechnungen direkt an zuständige Personen weiter. Rechnungen, die definierten Kriterien entsprechen (z. B. Betrag unter einer Freigabegrenze oder Übereinstimmung mit Bestellung und Lieferung), werden automatisch genehmigt. Nutzer*innen können jederzeit den Status der Freigabeprozesse in einem Dashboard einsehen.",
         "punkte": 4
       },
       {
-        "text": "KI leitet Rechnungen zur richtigen Person und trifft Entscheidungen basierend auf historischen Daten.",
+        "text": "KI identifiziert Unstimmigkeiten und schlägt Korrekturmaßnahmen vor. KI-gestützte Systeme können Rechnungen anhand ihres Inhalts automatisch an die richtige Person zur Prüfung, weiteren Bearbeitung und Freigabe weiterleiten. KI-Modelle analysieren Rechnungen und treffen automatisch Freigabeentscheidungen basierend auf historischen Daten und definierten Regeln. Systeme erkennen automatisch potenzielle Fehler, Betrugsmuster oder Abweichungen durch maschinelles Lernen. KI prognostiziert mögliche Konflikte, wie verspätete Zahlungen oder Diskrepanzen zwischen Rechnung und Bestellung. Intelligente Systeme informieren Mitarbeiter über potenzielle Risiken oder ungewöhnliche Aktivitäten.",
         "punkte": 5
       }
     ]
@@ -302,23 +302,23 @@
     "bestpractice": 5,
     "antworten": [
       {
-        "text": "Manuelle Buchung.",
+        "text": "Eingangsrechnungen werden manuell verbucht.",
         "punkte": 0
       },
       {
-        "text": "Vorlagen verwendet, aber manuelle Eingabe nötig.",
+        "text": "Es werden Vorlagen zur schnelleren Eingabe genutzt, jedoch werden Daten manuell eingegeben.",
         "punkte": 2
       },
       {
-        "text": "OCR liest Daten, müssen kontrolliert/nachbearbeitet werden.",
+        "text": "Mit Hilfe von OCR-Erkennung werden relevante Daten wie Rechnungsnummern, Beträge, Steuercodes, Sachkonten, Kostenstellen usw. extrahiert. Rechnungsdaten müssen aber häufig kontrolliert oder nachbearbeitet werden.",
         "punkte": 3
       },
       {
-        "text": "Automatische Erkennung & Kontierung inkl. Regelwerken.",
+        "text": "Die Rechnungsdaten werden automatisch erkannt und automatisch auf richtige Konten und Kostenstellen erfasst. Dies erfolgt beispielsweise über direkt verwertbare E-Rechnungen oder in Verbindung mit dem Bestellwesen. Es ist beispielswiese pro gekauftem Artikel ein Regelwerk hinterlegt, welches festlegt auf welches Konto und welche Kostenstelle gebucht werden soll.",
         "punkte": 4
       },
       {
-        "text": "KI kontiert automatisch auf Basis historischer Daten.",
+        "text": "Ein KI-gestütztes System analysiert Rechnungsinhalte, erkennt Muster aus früheren Buchungen und kontiert automatisch auf Basis historischer und kontextueller Daten. Die Verbuchung erfolgt ohne manuelle Eingriffe, bei hoher Trefferquote auch bei komplexen Buchungsfällen.",
         "punkte": 5
       }
     ]
@@ -329,23 +329,23 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Papierablage in Ordnern.",
+        "text": "Die Ablage der Eingangsrechnungen erfolgt in physischen Ordnern.",
         "punkte": 0
       },
       {
-        "text": "Scans als PDF auf Server, manuelle Ablage.",
+        "text": "Papierrechnungen werden eingescannt und als PDF auf einem Server gespeichert. Dateien werden manuell benannt (z. B. nach Rechnungsnummer oder Zulieferunternehmen) und in Ordnerstrukturen abgelegt.",
         "punkte": 2
       },
       {
-        "text": "DMS archiviert Rechnungen, OCR extrahiert Metadaten.",
+        "text": "Ein Dokumentenmanagementsystem (DMS) archiviert eingehende Rechnungen automatisiert. Relevante Metadaten wie Rechnungsnummer, Zulieferunternehmen oder Buchungsdatum werden mittels OCR-Erkennung extrahiert und zur strukturierten Ablage verwendet.",
         "punkte": 3
       },
       {
-        "text": "OCR + automatische Zuordnung im System, aus ERP abrufbar.",
+        "text": "Rechnungen werden automatisch in ein System (z.B. DMS) eingespeist. OCR-Software erkennt und extrahiert relevante Informationen (Rechnungsnummer, Betrag, Datum) für eine automatische Zuordnung. Rechnungen können über Stichwörter oder andere Metadaten schnell gefunden werden. Rechnungen sind direkt aus ERP-Systemen abrufbar.",
         "punkte": 4
       },
       {
-        "text": "KI erkennt Belegarten, lernt Zuordnungen, ermöglicht intelligente Suche.",
+        "text": "KI ordnet Belege automatisch den richtigen Kategorien zu, ist lernfähig bei der Zuordnung und ermöglicht eine intelligente Suche nach archivierten Dokumenten.",
         "punkte": 5
       }
     ]
@@ -356,23 +356,23 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Manueller Abgleich mit offenen Rechnungen.",
+        "text": "Die Zahlungen werden durch manuelle Prüfung mit den offenen Rechnungen abgeglichen.",
         "punkte": 0
       },
       {
-        "text": "Bankbuchungen manuell, mit Softwarehilfe abgeglichen.",
+        "text": "Bankbuchungen werden manuell aber mit digitaler Unterstützung mit Rechnungen abgeglichen.",
         "punkte": 2
       },
       {
-        "text": "Bankeinzug eingelesen, aber kein sauberer Skonti-Ausgleich.",
+        "text": "Bankeinzug wird eingelesen (z.B. CAMT-Format) aber der automatische Ausgleich bzw. die Verbuchung von Skonti funktioniert nicht einwandfrei.",
         "punkte": 3
       },
       {
-        "text": "Automatischer Ausgleich inkl. Skonti funktioniert einwandfrei.",
+        "text": "Bankeinzug wird eingelesen (z.B. CAMT-Format) der automatische Ausgleich und die Verbuchung von Skonti funktioniert einwandfrei.",
         "punkte": 4
       },
       {
-        "text": "KI erkennt komplexe Zahlungszuordnungen autonom.",
+        "text": "Ein KI-gestütztes System erkennt auch komplexe Zahlungszuordnungen wie Teilzahlungen oder Sammeleinzüge, gleicht diese automatisiert mit offenen Posten ab. Manuelle Eingriffe sind kaum erforderlich.",
         "punkte": 5
       }
     ]
@@ -383,23 +383,23 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Manuelle Überweisung durch Mitarbeiter*in.",
+        "text": "Überweisungen erfolgen manuell durch eine*n Mitarbeiter*in.",
         "punkte": 0
       },
       {
-        "text": "Zahlungsvorschlag manuell nachbearbeitet, Datei manuell hochgeladen.",
+        "text": "Zahlungsvorschläge werden im Buchhaltungsprogramm generiert, welche jedoch manuell nachbearbeitet werden. Die aus dem System generierte Datei wird von einem*einer Mitarbeitenden im Bankprogramm hochgeladen.",
         "punkte": 2
       },
       {
-        "text": "Zahlungsvorschlag kaum bearbeitet, Datei manuell hochgeladen.",
+        "text": "Zahlungsvorschläge werden im Buchhaltungsprogramm generiert, welche kaum manuell nachbearbeitet werden. Die aus dem System generierte Datei wird von einem*einer Mitarbeitenden im Bankprogramm hochgeladen.",
         "punkte": 3
       },
       {
-        "text": "Zahlung läuft weitgehend ohne manuelle Eingriffe.",
+        "text": "Die Bezahlung von Rechnungen finden weitgehend ohne Eingriff (mit Ausnahme einer etwaigen Kontrolle) von Mitarbeiter*innen statt.",
         "punkte": 4
       },
       {
-        "text": "KI prognostiziert Zahlungsströme und optimiert Liquidität.",
+        "text": "Die KI prognostiziert Zahlungsströme und optimiert das Liquiditätsmanagement basierend auf den offenen Posten.",
         "punkte": 5
       }
     ]
@@ -410,23 +410,23 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Mitarbeiter*innen erfassen den Auftrag händisch im ERP- oder CRM-System.",
+        "text": "Mitarbeiter*innen erfassen den eingehenden Auftrag händisch im ERP- oder CRM-System.",
         "punkte": 0
       },
       {
-        "text": "Kundenaufträge werden z. B. telefonisch erfasst und mit einfachen Tools übertragen.",
+        "text": "Aufträge werden per E-Mail, Telefon oder mobile Datenerfassungsgeräte entgegengenommen und teilweise durch Vorlagen oder einfache Tools unterstützt in das System übertragen.",
         "punkte": 2
       },
       {
-        "text": "Aufträge aus E-Mails oder Webformularen werden mittels OCR oder RPA übernommen.",
+        "text": "Aufträge aus E-Mails oder Webformularen werden mittels OCR-Texterkennung oder (Robotic Process Automation) RPA automatisch ins ERP-System übertragen. Mitarbeitende prüfen die übernommenen Daten.",
         "punkte": 3
       },
       {
-        "text": "Aufträge über EDI oder Kundenportal werden automatisch ins ERP übernommen.",
+        "text": "Aufträge werden über standardisierte digitale Schnittstellen (z. B. EDI oder Kundenportal) automatisch in das ERP-System übernommen und ohne manuelle Prüfung weiterverarbeitet.",
         "punkte": 4
       },
       {
-        "text": "KI erkennt Inhalte aus verschiedenen Kanälen und erstellt automatisch valide Aufträge.",
+        "text": "Eine KI erkennt Inhalte und Strukturen aus verschiedenen Eingangskanälen (z. B. E-Mail, PDF, Kundenportale) und erstellt automatisch valide Aufträge. Unvollständige oder fehlerhafte Daten werden intelligent ergänzt oder zur Klärung weitergeleitet.",
         "punkte": 5
       }
     ]
@@ -437,23 +437,23 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Rechnung wird manuell z. B. mit Word oder auf Papier erstellt.",
+        "text": "Ausgangsrechnungen werden manuell erstellt z.B. die Rechnung wird auf einem vorgedruckten Papier oder z. B. in MS Word erstellt.",
         "punkte": 0
       },
       {
-        "text": "Rechnungen werden mit Tabellenkalkulation (z. B. Excel) erstellt.",
+        "text": "Ausgangsrechnungen werden mit Hilfe von Tabellenkalkulationsprogrammen (z. B. MS Excel) erstellt.",
         "punkte": 2
       },
       {
-        "text": "RPA erstellt Rechnung basierend auf Auftrag und Lieferschein.",
+        "text": "Die Rechnungsdaten werden automatisiert aus einem System übernommen. RPA-Prozesse (Robotic Process Automation) erstellen die Rechnung auf Basis von Kundenauftrag und Lieferschein. Manuelle Eingriffe erfolgen nur bei Sonderfällen oder Abweichungen.",
         "punkte": 3
       },
       {
-        "text": "Rechnungen werden automatisch aus dem Auftrag im ERP-System erstellt.",
+        "text": "Ausgangsrechnungen werden auf Basis des Auftrages in der Buchhaltungs- bzw. ERP-Software automatisch aufgrund von sorgfältig gepflegten Stammdaten im Hintergrund erstellt.",
         "punkte": 4
       },
       {
-        "text": "KI passt Rechnungslogik automatisch an, erstellt auch via Spracherkennung.",
+        "text": "Ausgangsrechnungen werden auf Basis des Auftrages in der Buchhaltungs- bzw. ERP-Software automatisch erstellt. Eine KI lernt aus früheren Korrekturen und passt künftige Rechnungslogiken automatisch an, z. B. bei wiederkehrenden Abrechnungsfehlern oder kundenindividuellen Anforderungen. Eine KI erstellt durch Spracherkennung automatisiert eine Rechnung.",
         "punkte": 5
       }
     ]
@@ -464,23 +464,23 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Rechnungen werden ausgedruckt und per Post übermittelt.",
+        "text": "Ausgangsrechnungen werden im Papierformat per Post oder persönlich übergeben.",
         "punkte": 0
       },
       {
-        "text": "Digitale Rechnung wird manuell als PDF per E-Mail versendet.",
+        "text": "Rechnungen werden digital erstellt (z. B. als PDF) und manuell per E-Mail an die Kund*innen versendet.",
         "punkte": 2
       },
       {
-        "text": "Digitale Rechnungen werden mit RPA versendet.",
+        "text": "Die digitalen Ausgangsrechnungen werden mithilfe von RPA-Prozessen (Robotic Process Automation) per E-Mail oder Upload versendet.",
         "punkte": 3
       },
       {
-        "text": "Rechnungen werden je nach Kundenanforderung automatisch versendet.",
+        "text": "Ausgangsrechnungen werden je nach Kundenanforderung automatisch per E-Mail, EDI (Electronic Data Interchange) oder einem Web-Portal übermittelt.",
         "punkte": 4
       },
       {
-        "text": "Übertragungsprobleme werden proaktiv erkannt und behoben.",
+        "text": "Ausgangsrechnungen werden je nach Kundenanforderung automatisch übermittelt. Übertragungsprobleme werden proaktiv erkannt und automatisch behoben.",
         "punkte": 5
       }
     ]
@@ -491,23 +491,23 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Rechnung wird manuell verbucht.",
+        "text": "Ausgangsrechnungen werden manuell verbucht.",
         "punkte": 0
       },
       {
-        "text": "Buchung über Vorlagen oder CSV-Import.",
+        "text": "Die Verbuchung der Ausgangsrechnungen findet über Buchungsvorlagen oder über Import von CSV-Dateien statt.",
         "punkte": 2
       },
       {
-        "text": "RPA oder KI klassifizieren Rechnungen und schlagen Buchungen vor.",
+        "text": "Rechnungsdaten werden bei fehlender Warenwirtschaft mit Hilfe von RPA (Robotic Process Automation) oder KI klassifiziert (z. B. nach Umsatzart, Kostenstelle, Steuerkennzeichen). Buchungen werden vorgeschlagen und müssen nur noch freigegeben oder angepasst werden.",
         "punkte": 3
       },
       {
-        "text": "Vollständige automatisierte Verbuchung direkt im ERP.",
+        "text": "Die Verbuchung erfolgt vollständig automatisiert direkt aus dem Buchhaltungs- bzw. ERP-System. Sämtliche Buchungssätze werden ohne manuelles Zutun erstellt und verbucht.",
         "punkte": 4
       },
       {
-        "text": "KI prüft automatisch auf Unplausibilitäten und meldet Rückfragen.",
+        "text": "Während die Buchung automatisiert erfolgt, überprüft eine KI laufend die Richtigkeit der Buchung anhand von Regeln und Abweichungsanalysen. Bei Unplausibilitäten wird automatisch eine Rückmeldung erzeugt.",
         "punkte": 5
       }
     ]
@@ -518,23 +518,23 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Papierablage.",
+        "text": "Die Ablage der Ausgangsrechnungen erfolgt in physischen Ordnern.",
         "punkte": 0
       },
       {
-        "text": "PDFs manuell gespeichert, manuelle Benennung und Ablage.",
+        "text": "Rechnungen werden auf einem Server gespeichert. Dateien werden manuell benannt (z. B. nach Rechnungsnummer oder Kund*in) und in Ordnerstrukturen abgelegt.",
         "punkte": 2
       },
       {
-        "text": "DMS archiviert Ausgangsrechnungen mit Metadaten.",
+        "text": "Ein Dokumentenmanagementsystem (DMS) archiviert Ausgangsrechnungen automatisiert. Relevante Metadaten wie Rechnungsnummer oder Kund*in werden zur strukturierten Ablage verwendet.",
         "punkte": 3
       },
       {
-        "text": "Rechnungen automatisch im DMS, direkt im ERP abrufbar.",
+        "text": "Rechnungen werden automatisch in ein System (z. B. DMS) eingespeist; Ausgangsrechnungen können über Stichwörter oder andere Metadaten schnell gefunden werden. Rechnungen sind direkt aus ERP-Systemen abrufbar.",
         "punkte": 4
       },
       {
-        "text": "KI ordnet automatisch zu, lernfähig und intelligente Suche möglich.",
+        "text": "KI ordnet Belege automatisch den richtigen Kategorien zu, ist lernfähig bei der Zuordnung und ermöglicht eine intelligente Suche nach archivierten Dokumenten.",
         "punkte": 5
       }
     ]
@@ -549,19 +549,19 @@
         "punkte": 0
       },
       {
-        "text": "Manuelle Buchung mit Softwareunterstützung.",
+        "text": "Zahlungseingänge werden manuell aber mit digitaler Unterstützung mit Ausgangsrechnungen abgeglichen.",
         "punkte": 2
       },
       {
-        "text": "Bankeinzahlungen werden eingelesen, RPA gleicht teilautomatisiert ab.",
+        "text": "Zahlungseingänge werden eingelesen (z. B. CAMT-Format), aber der automatische Ausgleich bzw. die Verbuchung von Skonti funktioniert nicht einwandfrei. Zahlungen und offene Posten werden mit Hilfe von RPA (Robotic Process Automation) miteinander ausgeglichen.",
         "punkte": 3
       },
       {
-        "text": "Automatischer Abgleich inkl. Skonti funktioniert einwandfrei.",
+        "text": "Zahlungseingänge werden eingelesen (z.B. CAMT-Format), der automatische Ausgleich und die Verbuchung von Skonti funktionieren einwandfrei.",
         "punkte": 4
       },
       {
-        "text": "KI erkennt auch komplexe Fälle (z. B. Teilzahlungen) und gleicht automatisch ab.",
+        "text": "Ein KI-gestütztes System erkennt auch komplexe Zahlungszuordnungen wie Teilzahlungen, gleicht diese automatisiert mit offenen Posten ab. Manuelle Eingriffe sind kaum erforderlich.",
         "punkte": 5
       }
     ]
@@ -572,23 +572,23 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Mahnungen werden manuell erstellt und versendet.",
+        "text": "Offene Posten werden manuell überwacht. Mahnungen werden individuell in Textverarbeitungsprogrammen (z. B. MS Word) erstellt und per Post oder E-Mail verschickt.",
         "punkte": 0
       },
       {
-        "text": "Mahnschreiben werden teilautomatisch vorgeschlagen und angepasst.",
+        "text": "Die Mahnschreiben werden teilautomatisiert erstellt. Aus dem Buchhaltungs- bzw. ERP-System wird ein Vorschlag generiert, welcher dann manuell kontrolliert und abgeändert wird.",
         "punkte": 2
       },
       {
-        "text": "System erstellt Mahnvorschläge, RPA oder KI priorisieren Fälle.",
+        "text": "Das System erstellt automatisch Mahnvorschläge basierend auf Kundenverhalten, Fälligkeit und bisherigen Zahlungsverzögerungen. RPA (Robotic Process Automation) oder KI priorisiert die Fälle und schlägt Mahnstufen oder individuelle Texte vor, die mit minimalem Eingriff versendet werden.",
         "punkte": 3
       },
       {
-        "text": "Automatisches Mahnverfahren gemäß Regeln (z. B. Mahnfristen).",
+        "text": "Mahnungen werden automatisch auf Basis definierter Regeln (Fälligkeit, Mahnfristen, Mahngebühren) erstellt und versendet. Das gesamte Mahnverfahren erfolgt ohne manuelles Zutun.",
         "punkte": 4
       },
       {
-        "text": "KI-gestützte Mahnungen mit Kundenverhalten, Tonalität, Risikoanalyse, Chatbot etc.",
+        "text": "KI-gestützte vollautomatisierte Erstellung und Versendung von Mahnschreiben: Durch maschinelles Lernen werden Muster im Zahlungsverhalten erkannt, z. B. Kunden, die häufiger verspätet zahlen. Die KI bewertet das Risiko eines Zahlungsausfalls auf Basis von Faktoren wie Branchenkennzahlen, Bonitätsprüfungen oder Makrotrends. Basierend auf Kundendaten erstellt die KI personalisierte Mahnungen, die den Ton und den Inhalt auf den jeweiligen Kunden anpassen (z. B. höflicher Ton bei loyalen Kunden, direkter bei säumigen Zahlern). Ein KI-gestützter Chatbot beantwortet Kundenanfragen zu Mahnungen, ermöglicht Ratenzahlungsvereinbarungen oder sendet Zahlungslinks.)",
         "punkte": 5
       }
     ]
@@ -599,23 +599,23 @@
     "bestpractice": 4,
     "antworten": [
       {
-        "text": "Zahlungen werden manuell auf Kund*innen verbucht.",
+        "text": "Zahlungen werden manuell auf dem Kunden*der Kundin erfasst.",
         "punkte": 0
       },
       {
-        "text": "Zahlungsdateien werden importiert, Zuordnung manuell.",
+        "text": "Zahlungsdateien (z. B. aus dem Online-Banking) werden ins System importiert. Die Zuordnung zu offenen Posten erfolgt jedoch größtenteils manuell.",
         "punkte": 2
       },
       {
-        "text": "RPA oder KI unterstützt automatische Zuordnung mit Nachbearbeitung.",
+        "text": "Ein RPA-Tool (Robotic Process Automation) oder KI unterstützt die automatische Zuordnung von Zahlungseingängen zu offenen Posten, z. B. über Beträge, Referenznummern oder Kundendaten. Bei Unklarheiten erfolgt eine gezielte Nachbearbeitung durch Mitarbeitende.",
         "punkte": 3
       },
       {
-        "text": "Zahlungseingänge inkl. Skonti werden automatisch verarbeitet.",
+        "text": "Zahlungseingänge inkl. Skonti werden automatisch verarbeitet, den richtigen Kund*innen und Rechnungen zugeordnet und im System verbucht. Manuelle Eingriffe sind nicht notwendig.",
         "punkte": 4
       },
       {
-        "text": "KI erkennt Teil- oder Überzahlungen, erstellt Vorschläge oder Anfragen automatisch.",
+        "text": "Die Zuordnung von Kundenzahlungen erfolgt automatisch. Falls es Abweichungen gibt, erfolgt eine intelligente Fehlerbehandlung und Korrekturvorschläge. Beispielsweise erkennt die KI bei Teilzahlungen, ob eine Zahlung nur einen Teil einer Rechnung begleicht, und markiert den offenen Betrag. Bei Überzahlungen schlägt die KI eine automatische Gutschrift vor. Bei unklaren Zahlungen erstellt die KI eine automatische Anfrage an den Kunden*die Kundin.",
         "punkte": 5
       }
     ]

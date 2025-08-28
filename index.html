@@ -7,7 +7,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-  <h1>Fragebogen: Digitalisierungsreifegrad</h1>
+
+<header style="background-color: #fff165; padding: 10px; text-align: right;">
+    <img src="images/C02 Logo.png" alt="FH CAMPUS 02 Logo" style="height: 50px; margin-right: 15px;">
+</header>
+
+  <h1 style="text-align:left; padding-left:40px;">Ihr individueller Digitalisierungsreifegrad</h1>
   <div id="fragebereich"></div>
 
   <script>
@@ -20,37 +25,36 @@
     let aktuelleFrage = 0;
 
     const prozessbeschreibungen = {
-      "Record to Report (R2R)": "In diesem Abschnitt geht es um die Prozesse, mit denen Sie Ihre Unternehmenszahlen zusammenstellen und auswerten. Dazu zählen zum Beispiel die Umsatzsteuervoranmeldung, die Erstellung von Monatsberichten sowie die interne Verteilung dieser Informationen.",
-      "Purchase to Pay (P2P)": "In diesem Abschnitt beantworten Sie Fragen zu Ihren Beschaffungsprozessen – also alles vom Erkennen eines Bedarfs bis zur Bezahlung einer Eingangsrechnung. Dabei geht es unter anderem um Bedarfsermittlung, Bestellung, Rechnungsprüfung und Zahlungsabwicklung.",
-      "Order to Cash (O2C)": "Hier geht es um Ihre Abläufe im Verkauf – vom Eingang eines Kundenauftrags bis zum Zahlungseingang. Gefragt wird unter anderem, wie Sie Rechnungen erstellen, versenden, archivieren und Zahlungen überwachen."
+      "Record to Report (R2R)": "In diesem Abschnitt werden die Prozesse betrachtet, die der Aufbereitung und Analyse betriebswirtschaftlicher Kennzahlen und Finanzdaten dienen. Dazu zählen unter anderem die Umsatzsteuervoranmeldung, die Erstellung von Monatsberichten sowie die interne Bereitstellung und Verteilung dieser Informationen.",
+      "Purchase to Pay (P2P)": "In diesem Abschnitt beantworten Sie Fragen zu Ihren Beschaffungsprozessen - alles vom Erkennen eines Bedarfs bis zur Bezahlung einer Eingangsrechnung. Dabei geht es unter anderem um Bedarfsermittlung, Bestellung, Rechnungsprüfung und Zahlungsabwicklung.",
+      "Order to Cash (O2C)": "Hier geht es um Ihre Abläufe im Verkauf - vom Eingang eines Auftrags durch Kund*innen bis zum Zahlungseingang. Erhoben wird unter anderem, wie Sie Rechnungen erstellen, versenden, archivieren und Zahlungen überwachen."
     };
 
     const bestPracticeBeschreibungen = {
       "Erstellung der UVA": "Umsatzsteuer und Vorsteuer werden automatisch basierend auf Buchungsdaten und Steuerlogiken berechnet. Die UVA wird automatisch generiert und in das korrekte Format für die Übermittlung umgewandelt.",
-      "Abgabe der UVA": "Die elektronische Übermittlung der UVA an das Finanzamt erfolgt automatisch durch die Buchhaltungs- bzw. ERP-Software.",
-      "Erstellung Monatsberichtswesen": "Alle relevanten Finanzdaten werden automatisch im ERP-System erfasst und konsolidiert. Berichte werden automatisch in verschiedenen Formaten erstellt.",
-      "Verteilung von regelmäßigen internen Berichten": "Die Verteilung der Berichte erfolgt automatisiert, z. B. über SharePoint oder BI-Systeme.",
-      "Bedarfsermittlung": "Die Bedarfsermittlung erfolgt automatisch im ERP-System auf Basis vordefinierter Regeln, Mindestbestände oder Aufträge.",
-      "Genehmigung des Bedarfs": "Workflow-Systeme leiten Anträge automatisch zur Genehmigung weiter und dokumentieren den Prozess. Freigaben erfolgen regelbasiert.",
-      "Bestellung": "Bestellungen werden automatisiert aus genehmigten Bedarfen generiert und an Lieferanten übermittelt.",
-      "Wareneingang": "Der Wareneingang wird automatisch erfasst, geprüft und ins System übernommen.",
-      "Format und Eingang der Eingangsrechnung": "Eingangsrechnungen werden in standardisierten Formaten empfangen (z. B. EDI, XML) und automatisch ins ERP-System übernommen.",
-      "Formale Prüfung der Eingangsrechnung": "Formale Prüfungen (Pflichtfelder, Format) erfolgen automatisch im System.",
-      "Inhaltliche Prüfung der Eingangsrechnung": "Die inhaltliche Prüfung erfolgt automatisiert anhand von Bestell- und Wareneingangsdaten.",
-      "Verbuchung der Eingangsrechnung": "Die Verbuchung erfolgt automatisch im ERP-System.",
-      "Archivierung der Eingangsrechnung": "Eingangsrechnungen werden automatisch im DMS archiviert und sind schnell auffindbar.",
-      "OP-Verwaltung Kreditoren": "Offene Posten werden automatisch verwaltet und ausgeglichen.",
-      "Verbuchung des Zahlungsausgangs": "Zahlungsausgänge werden automatisch erstellt, geprüft und verbucht.",
-      "Kundenauftragserfassung": "Kund*innenaufträge werden automatisch über digitale Schnittstellen ins ERP übernommen.",
-      "Erstellung der Ausgangsrechnung": "Ausgangsrechnungen werden automatisch auf Basis gepflegter Stammdaten erstellt.",
-      "Format und Übergabe der Ausgangsrechnung": "Rechnungen werden automatisch im passenden Format (PDF, EDI) an Kund*innen übermittelt.",
-      "Verbuchung der Ausgangsrechnung": "Die Verbuchung erfolgt automatisch im ERP-System.",
-      "Archivierung der Ausgangsrechnung": "Ausgangsrechnungen werden automatisch im DMS archiviert und sind digital abrufbar.",
-      "OP-Verwaltung Debitoren": "Offene Posten werden automatisch abgeglichen, Zahlungen verbucht.",
-      "Mahnwesen": "Mahnungen werden automatisch auf Basis definierter Regeln erstellt und versendet.",
-      "Verbuchung des Zahlungseingangs": "Zahlungseingänge werden automatisch verbucht und zugeordnet."
+      "Abgabe der UVA": "Die elektronische Übermittlung der UVA an das Finanzamt erfolgt automatisiert nach manueller Freigabe durch die Buchhaltungs- bzw. ERP-Software.",
+      "Erstellung Monatsberichtswesen": "Alle relevanten Finanzdaten werden automatisch in einem ERP-System oder einer Buchhaltungssoftware erfasst und konsolidiert. Automatische Berechnung der GuV-Positionen anhand vordefinierter Kontenpläne und Buchungsregeln. Berichte werden direkt im System generiert und können automatisch in verschiedenen Formaten (PDF, Excel, Dashboard) erstellt werden.",
+      "Verteilung von regelmäßigen internen Berichten": "Die Verteilung der Berichte erfolgt automatisiert. Sie werden etwa über SharePoint, BI usw. aufbereitet verfügbar gemacht.",
+      "Bedarfsermittlung": "Die Bedarfsermittlung erfolgt vollständig automatisch im ERP-System auf Basis vordefinierter Regeln, Mindestbestände und/oder Aufträgen.",
+      "Genehmigung des Bedarfs": "Workflow-Systeme leiten Anträge automatisch zur Genehmigung weiter und dokumentieren den Prozess. Die Genehmigung erfolgt vollständig regelbasiert innerhalb des ERP-Systems. Bei definierten Parametern (z. B. Betrag, Artikel, Kostenstelle) wird die Freigabe automatisch erteilt.",
+      "Bestellung": "Bestellungen werden vollständig automatisch auf Basis von Bedarf und Freigaben generiert und über standardisierte Schnittstellen (z. B. EDI = Electronic Data Interchange; elektronischer Austausch von Geschäftsdokumenten) an die Lieferant*innen übermittelt – ohne manuellen Eingriff.",
+      "Wareneingang": "Mittels mobiler Datenerfassungsgeräte wird der Wareneingang aufgenommen, ins Lager eingebucht und in Echtzeit mit der Bestellung abgeglichen.",
+      "Format und Eingang der Eingangsrechnung": "Ein Großteil der Eingangsrechnungen sind elektronisch direkt verwertbare Rechnungen (EDI-Rechnungen). Die KI unterstützt bei Aufwandskontierung.",
+      "Formale Prüfung der Eingangsrechnung": "Software prüft automatisch alle formalen Kriterien der Rechnung. KI erkennt komplexe Fehler- oder Betrugsmuster bei Rechnungen.",
+      "Inhaltliche Prüfung der Eingangsrechnung": "Rechnungen werden systemgestützt mit Bestellungen, Wareneingängen und Vertragsbedingungen verglichen. Automatisierte Workflows leiten Rechnungen direkt an zuständige Personen weiter. Rechnungen, die definierten Kriterien entsprechen (z. B. Betrag unter einer Freigabegrenze oder Übereinstimmung mit Bestellung und Lieferung), werden automatisch genehmigt. Nutzer*innen können jederzeit den Status der Freigabeprozesse in einem Dashboard einsehen.",
+      "Verbuchung der Eingangsrechnung": "Ein KI-gestütztes System analysiert Rechnungsinhalte, erkennt Muster aus früheren Buchungen und kontiert automatisch auf Basis historischer und kontextueller Daten. Die Verbuchung erfolgt ohne manuelle Eingriffe, bei einer hohen Trefferquote auch bei komplexen Buchungsfällen.",
+      "Archivierung der Eingangsrechnung": "Rechnungen werden automatisch in ein System (z.B. DMS) eingespeist; OCR-Software erkennt und extrahiert relevante Informationen (Rechnungsnummer, Betrag, Datum) für eine automatische Zuordnung; Rechnungen können über Stichwörter oder andere Metadaten schnell gefunden werden. Rechnungen sind direkt aus ERP-Systemen abrufbar.",
+      "OP-Verwaltung Kreditoren": "Bankeinzug wird eingelesen (z.B. CAMT-Format) der automatische Ausgleich und die Verbuchung von Skonti funktioniert einwandfrei.",
+      "Verbuchung des Zahlungsausgangs": "Die Bezahlung von Rechnungen finden weitgehend ohne Eingriff (mit Ausnahme einer etwaigen Kontrolle) von Mitarbeiter*innen statt.",
+      "Kundenauftragserfassung": "Kund*innenaufträge werden über standardisierte digitale Schnittstellen (z. B. EDI oder Kund*innenportal) automatisch in das ERP-System übernommen und ohne manuelle Prüfung weiterverarbeitet.",
+      "Erstellung der Ausgangsrechnung": "Ausgangsrechnungen werden auf Basis des Auftrages in der Buchhaltungs- bzw. ERP-Software automatisch aufgrund von sorgfältig gepflegten Stammdaten im Hintergrund erstellt.",
+      "Format und Übergabe der Ausgangsrechnung": "Ausgangsrechnungen werden je nach Kund*innenanforderungen automatisch per E-Mail, EDI (Electronic Data Interchange) oder einem Web-Portal übermittelt.",
+      "Verbuchung der Ausgangsrechnung": "Die Verbuchung erfolgt vollständig automatisiert direkt aus dem Buchhaltungs- bzw. ERP-System. Sämtliche Buchungssätze werden ohne manuelles Zutun erstellt und verbucht.",
+      "Archivierung der Ausgangsrechnung": "Rechnungen werden automatisch in ein System (z.B. DMS) eingespeist; Ausgangsrechnungen können über Stichwörter oder andere Metadaten schnell gefunden werden. Rechnungen sind direkt aus ERP-Systemen abrufbar.",
+      "OP-Verwaltung Debitoren": "Die Bankeinzahlungen werden eingelesen (z.B. CAMT-Format) der automatische Ausgleich und die Verbuchung von Skonti funktioniert einwandfrei.",
+      "Mahnwesen": "Mahnungen werden automatisch auf Basis definierter Regeln (Fälligkeit, Mahnfristen, Mahngebühren) erstellt und versendet. Das gesamte Mahnverfahren erfolgt ohne manuelles Zutun.",
+      "Verbuchung des Zahlungseingangs": "Zahlungseingänge inkl. Skonti werden automatisch verarbeitet, den richtigen Kund*innen und Rechnungen zugeordnet und im System verbucht. Manuelle Eingriffe sind nicht notwendig."
     };
-
     fetch('fragebogen.json')
       .then(response => response.json())
       .then(data => {
@@ -79,7 +83,7 @@
       frageDiv.appendChild(h2);
 
       const absatz = document.createElement('p');
-      absatz.innerHTML = `<p>Mit dieser Web-Applikation erfassen Sie den Digitalisierungsreifegrad ausgewählter Prozesse im Rechnungswesen. Bitte wählen Sie jene Tätigkeitsbeschreibung aus, die am ehesten auf Ihre aktuelle Situation (~ 90 % ihrer Sachverhalte) zutrifft. Ausnahmefälle sind nicht zu berücksichtigen. <p>Die Auswertung zeigt Ihnen Ihren persönlichen Digitalisierungsreifegrad je Hauptprozess und einen Vergleich mit einem Best Practice-Zustand. Danach wird Ihnen Ihr persönlicher Reifegrad je Unterprozess angezeigt und es werden Verbesserungspotenziale aufgezeigt.</p><p>Dieser Fragebogen wird anonym ausgefüllt, es werden keine personenbezogenen Daten abgefragt und gespeichert. <p>Die Bearbeitung dauert max. 10 Minuten.</p>`;
+      absatz.innerHTML = `<p>Mit dieser Web-Applikation erfassen Sie den Digitalisierungsreifegrad ausgewählter Prozesse Ihres Unternehmens im Rechnungswesen. Bitte wählen Sie jene Tätigkeitsbeschreibung aus, die am ehesten auf Ihre aktuelle Situation (~ 90 % ihrer Sachverhalte) zutrifft. Ausnahmefälle sind nicht zu berücksichtigen. <p>Die Auswertung zeigt Ihnen Ihren individuellen Digitalisierungsreifegrad je Hauptprozess und einen Vergleich mit einem Best Practice-Zustand. Um detaillierte Verbesserungspotenziale aufzuzeigen, wird Ihnen ebenfalls der Digitalisierungsreifegrad je Unterprozess aufgezeigt.</p><p>Dieser Fragebogen wird anonym ausgefüllt, es werden keine personenbezogenen Daten abgefragt und gespeichert. <p>Die Bearbeitung dauert max. 10 Minuten.</p>`;
       frageDiv.appendChild(absatz);
 
       const btn = document.createElement('button');
@@ -138,6 +142,7 @@
       frage.antworten.forEach((antwort) => {
         const button = document.createElement('button');
         button.textContent = antwort.text;
+        button.classList.add('antwort-button');
         button.style.display = 'block';
         button.style.margin = '10px 0';
         button.onclick = () => {
@@ -165,14 +170,31 @@
       const brancheSelect = document.createElement('select');
       brancheSelect.id = 'branche';
       [
-        'Land- und Forstwirtschaft, Fischerei', 'Bergbau und Gewinnung von Steinen und Erden', 'Herstellung von Waren und Erzeugnissen aller Art, inkl. Druckerzeugnissen, Bild-, Ton und Datenträgern', 'Bauwirtschaft', 'Gesundheitswesen',
-        'Energieversorgung und Wasserversorgung', 'Baugewerbe oder Bauindustrie', 'Handel mit Waren aller Art', 'Personen- oder Güterbeförderung aller Art', 'Gastronomie und/oder Beherbergung', 'Verlagswesen, Rundfunk sowie Erstellung und Verarbeitung von Medieninhalten','Telekommunikation, Softwareentwicklung, IT-Beratung inkl. Erbringung von sonstigen IT-Dienstleistungen', 'Finanz- und Versicherungsdienstleistungen', 'Vermietung, Verpachtung von Grundstücken, Wohnungen, Häusern', 'Rechts- und Steuerberatung, Wirtschaftsprüfung', 'Unternehmensberatung', 'Forschung und Entwicklung', 'Sonstige Dienstleistungen', 'Gesundheits- und Sozialwesen', 'Sonstige'
+        'Land- und Forstwirtschaft, Fischerei',
+        'Bergbau und Gewinnung von Steinen und Erden',
+        'Herstellung von Waren und Erzeugnissen aller Art, inkl. Druckerzeugnissen, Bild-, Ton und Datenträgern',
+        'Energieversorgung und Wasserversorgung',
+        'Baugewerbe oder Bauindustrie',
+        'Handel mit Waren aller Art',
+        'Personen-, oder Güterbeförderung aller Art',
+        'Gastronomie und/oder Beherbergung',
+        'Verlagswesen, Rundfunk sowie Erstellung und Verarbeitung von Medieninhalten',
+        'Telekommunikation, Softwareentwicklung, IT-Beratung inkl. Erbringung von sonstigen IT-Dienstleistungen',
+        'Finanz- und Versicherungsdienstleistungen',
+        'Vermietung, Verpachtung von Grundstücken, Wohnungen, Häusern',
+        'Rechts- und Steuerberatung, Wirtschaftsprüfung',
+        'Unternehmensberatung',
+        'Forschung und Entwicklung',
+        'Sonstige Dienstleistungen',
+        'Gesundheits- und Sozialwesen',
+        'Sonstige'
       ].forEach(opt => {
         const o = document.createElement('option');
         o.value = opt;
         o.textContent = opt;
         brancheSelect.appendChild(o);
       });
+
       form.appendChild(brancheLabel);
       form.appendChild(brancheSelect);
       form.appendChild(document.createElement('br'));
@@ -182,12 +204,19 @@
       mitarbLabel.textContent = 'Wie viele Mitarbeiter*innen beschäftigt ihr Unternehmen? Bitte wählen Sie gemäß der (geschätzten) Anzahl vollzeitäquivalent aus.';
       const mitarbSelect = document.createElement('select');
       mitarbSelect.id = 'mitarbeitende';
-      ['1–9', '10–49', '50–249', '250+'].forEach(opt => {
+      [
+        '0 bis 9 Mitarbeiter*innen',
+        '10 bis 49 Mitarbeiter*innen',
+        '50 bis 249 Mitarbeiter*innen',
+        'über 250 Mitarbeiter*innen',
+        'keine Angabe'
+      ].forEach(opt => {
         const o = document.createElement('option');
         o.value = opt;
         o.textContent = opt;
         mitarbSelect.appendChild(o);
-      });
+});
+
       form.appendChild(mitarbLabel);
       form.appendChild(mitarbSelect);
       form.appendChild(document.createElement('br'));
@@ -198,8 +227,15 @@
       const bundeslandSelect = document.createElement('select');
       bundeslandSelect.id = 'bundesland';
       [
-        'Burgenland', 'Kärnten', 'Niederösterreich', 'Oberösterreich',
-        'Salzburg', 'Steiermark', 'Tirol', 'Vorarlberg', 'Wien',
+        'Burgenland',
+        'Kärnten',
+        'Niederösterreich',
+        'Oberösterreich',
+        'Salzburg',
+        'Steiermark',
+        'Tirol',
+        'Vorarlberg',
+        'Wien'
       ].forEach(opt => {
         const o = document.createElement('option');
         o.value = opt;
@@ -303,21 +339,22 @@
       const textauswertungGesamt = document.createElement("div");
       textauswertungGesamt.style.marginTop = "20px";
 
-      labels.forEach((hp, i) => {
-          const p = document.createElement("p");
-          const prozent = werte[i];
-          const best = bestwerte[i];
-          let text = `Im Bereich '${hp}' erreicht Ihr Unternehmen einen Reifegrad von ${prozent} %. `;
-          text += `Das entspricht der ${reifegradText(prozent)}.`;
-          if (prozent < best) {
-            text += ` Im Vergleich zum Best Practice (${best} %) besteht Verbesserungspotenzial.`;
-          } else if (prozent === best) {
-            text += ` Sie erreichen damit den Best Practice-Wert (${best} %).`;
-          } else {
-            text += ` Sie liegen damit über dem aktuellen Best Practice (${best} %).`;
-          }
-          p.textContent = text;
-          textauswertungGesamt.appendChild(p);
+      // Korrigierter Code-Block
+    labels.forEach((hp, i) => {
+        const p = document.createElement("p");
+        const prozent = werte[i];
+        const best = bestwerte[i];
+        let text = `Im Bereich '${hp}' erreicht Ihr Unternehmen einen Reifegrad von ${prozent} %. `;
+        text += `Das entspricht der ${reifegradText(prozent)}.`;
+        if (prozent < best) {
+          text += ` Im Vergleich zum Best Practice (${best} %) besteht Verbesserungspotenzial.`;
+        } else if (prozent === best) {
+          text += ` Sie erreichen damit den Best Practice-Wert (${best} %).`;
+        } else {
+          text += ` Sie liegen damit über dem aktuellen Best Practice (${best} %).`;
+        }
+        p.textContent = text;
+        textauswertungGesamt.appendChild(p);
       });
       frageDiv.appendChild(textauswertungGesamt);
 
@@ -330,14 +367,14 @@
               label: 'Ihr Unternehmen',
               data: werte,
               fill: true,
-              borderColor: 'rgba(0, 123, 255, 1)',
-              backgroundColor: 'rgba(0, 123, 255, 0.2)'
+              borderColor: '#951d56',
+              backgroundColor: 'rgba(149, 29, 86, 0.3)'
             },
             {
               label: 'Best Practice',
               data: bestwerte,
               fill: false,
-              borderColor: 'rgba(40, 167, 69, 1)',
+              borderColor: '#354149',
               borderDash: [5, 5]
             }
           ]
@@ -391,14 +428,14 @@
                 label: 'Ihr Unternehmen',
                 data: werte,
                 fill: true,
-                borderColor: 'rgba(0, 123, 255, 1)',
-                backgroundColor: 'rgba(0, 123, 255, 0.2)'
+                borderColor: '#951d56',
+                backgroundColor: 'rgba(149, 29, 86, 0.3)'
               },
               {
                 label: 'Best Practice',
                 data: bestwerte,
                 fill: false,
-                borderColor: 'rgba(40, 167, 69, 1)',
+                borderColor: '#354149',
                 borderDash: [5, 5]
               }
             ]
@@ -462,270 +499,304 @@
     }
   </script>
 
+
+
+
+
+
+
+
+
 <script>
-function exportPDF() {
+async function exportPDF() {
   const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
+  const doc = new jsPDF({ unit: "mm", format: "a4" });
 
-  // Deckblatt
-  doc.setFontSize(20);
-  doc.setFont("helvetica", "bold");
-  doc.text("Ergebnisse Digitalisierungsreifegrad", 20, 40);
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "normal");
-  doc.text("Datum: " + new Date().toLocaleDateString("de-DE"), 20, 55);
-  doc.addPage();
+  // ——— Layout/CI-Parameter (FH CAMPUS 02) ———
+  const COLOR = {
+    gelb: "#fff165",        // Campus-Gelb (Hauptfarbe)
+    prim: "#951d56",        // Department RWC
+    text: "#354149"         // Grau für Fließtext
+  };
+  const PAGE = {
+    w: doc.internal.pageSize.getWidth(),
+    h: doc.internal.pageSize.getHeight(),
+    margin: 15
+  };
+  const LOGO = { src: "images/C02 Logo.png", wFirst: 50, wNext: 40 }; // mm
 
-  // Hauptprozess-Diagramm
-  doc.setFontSize(16);
-  doc.setFont("helvetica", "bold");
-  doc.text("Hauptprozesse – Übersicht", 20, 20);
-
-  const chartCanvas = document.getElementById('radarChart');
-  if (chartCanvas) {
-    const chartImage = chartCanvas.toDataURL('image/png');
-    doc.addImage(chartImage, 'PNG', 15, 30, 180, 100);
+  // ——— Utils ———
+  function mm(x) { return x; } // (nur der Lesbarkeit halber)
+  function setTextStyle(size, color = COLOR.text) {
+    doc.setFont("helvetica", "normal"); // Aptos wäre CD-konform, helvetica als PDF-Fallback
+    doc.setFontSize(size);
+    doc.setTextColor(color);
   }
+  function heading(y, text, level = 1) {
+    const sizes = { 1: 22, 2: 18, 3: 16 };
+    // gelber Balken hinter der Headline
+    const padY = 6;
+    const textY = y + padY;
+    const textW = PAGE.w - 2 * PAGE.margin - 2;
+    doc.setFillColor(COLOR.gelb);
+    doc.rect(PAGE.margin, y, textW + 2, padY + 4, "F");
+    setTextStyle(sizes[level], COLOR.prim);
+    doc.text(text.toUpperCase(), PAGE.margin + 2, textY);
+    setTextStyle(12, COLOR.text);
+    return textY + 6;
+  }
+  function addPara(text, y, maxWidth = PAGE.w - 2 * PAGE.margin) {
+    const lines = doc.splitTextToSize(text, maxWidth);
+    const lineHeight = 6; // Höhe einer Textzeile
 
-  let yPos = 140;
-  doc.setFontSize(12);
-  doc.setFont("helvetica", "normal");
-  document.querySelectorAll("#fragebereich > div > p").forEach(p => {
-    const text = doc.splitTextToSize(p.textContent, 170);
-    if (yPos + text.length * 7 > 280) {
-      doc.addPage();
-      yPos = 20;
+    for (const line of lines) {
+      // Prüfen, ob die nächste Zeile noch auf die Seite passt
+      if (y + lineHeight > PAGE.h - PAGE.margin) {
+        newPage(); // Wenn nicht, neue Seite beginnen
+        y = PAGE.margin + 10;
+      }
+      doc.text(line, PAGE.margin, y); // Einzelne Zeile schreiben
+      y += lineHeight; // y-Position für die nächste Zeile anpassen
     }
-    doc.text(text, 20, yPos);
-    yPos += text.length * 7;
-  });
+    return y + 2; // Kleinen Abstand nach dem Absatz lassen
+  }
+  function addChart(canvas, y, maxWidth = PAGE.w - 2 * PAGE.margin) {
+    if (!canvas) return y;
+    const aspect = canvas.width / canvas.height;
+    const w = maxWidth;
+    const h = w / aspect;
+    if (y + h > PAGE.h - PAGE.margin) {
+      newPage();
+      y = PAGE.margin + 10;
+    }
+    const img = canvas.toDataURL("image/png");
+    doc.addImage(img, "PNG", PAGE.margin, y, w, h);
+    return y + h + 6;
+  }
+  async function loadImage(src) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = src;
+    });
+  }
+  function placeLogo(imgEl, widthMM, yPos, align = 'right') { // align als neuer Parameter
+    const w = widthMM;
+    const imgWpx = imgEl.naturalWidth;
+    const imgHpx = imgEl.naturalHeight;
+    const aspect = imgWpx / imgHpx;
+    const h = w / aspect;
 
-  // Unterprozess-Diagramme
-  document.querySelectorAll("canvas[id^='canvas-']").forEach((canvas, idx) => {
+    // NEU: Logik für die Ausrichtung
+    let x;
+    if (align === 'left') {
+        x = PAGE.margin; // Links am Seitenrand ausrichten
+    } else {
+        x = PAGE.w - PAGE.margin - w; // Rechts am Seitenrand ausrichten (Standard)
+    }
+
+    const y = yPos;
+    doc.addImage(imgEl, "PNG", x, y, w, h);
+}
+  function newPage() {
     doc.addPage();
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "bold");
-    doc.text(`Unterprozess-Diagramm ${idx+1}`, 20, 20);
-    
-    const canvasImage = canvas.toDataURL('image/png');
-    doc.addImage(canvasImage, 'PNG', 15, 30, 180, 100);
-    
-    let subTextY = 140;
-    doc.setFontSize(11);
-    doc.setFont("helvetica", "normal");
-
-    const textBlock = canvas.nextElementSibling;
-    if (textBlock) {
-      const paragraphs = textBlock.querySelectorAll("p");
-      paragraphs.forEach(p => {
-        const t = doc.splitTextToSize(p.textContent, 170);
-        if (subTextY + t.length * 7 > 280) {
-          doc.addPage();
-          subTextY = 20;
-        }
-        doc.text(t, 20, subTextY);
-        subTextY += t.length * 7;
-      });
-    }
-  });
-
-  doc.save("Ergebnisse_Digitalisierungsreifegrad.pdf");
-}
-</script>
-
-
-<script>
-function exportPDF() {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-
-  function addChartImage(doc, canvas, x, y, maxWidth) {
-    if (canvas) {
-      const aspectRatio = canvas.width / canvas.height;
-      const width = maxWidth;
-      const height = width / aspectRatio;
-      const chartImage = canvas.toDataURL('image/png');
-      doc.addImage(chartImage, 'PNG', x, y, width, height);
-      return y + height + 10;
-    }
-    return y;
+  }
+  function sectionGap(y) {
+    return y + 4;
   }
 
-  // --- Deckblatt ---
-  doc.setFontSize(22);
-  doc.setFont("helvetica", "bold");
-  doc.text("Ihr Digitalisierungsreifegrad", 20, 40);
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "normal");
-  doc.text("Datum: " + new Date().toLocaleDateString("de-DE"), 20, 55);
-  doc.setFontSize(12);
-  doc.text("Wir danken für die Nutzung unseres Services zum Vergleich Ihres Digitalisierungsreifegrades mit dem Best Practice.", 20, 70, {maxWidth: 170});
-  doc.text("Nachstehend finden Sie die Detailergebnisse.", 20, 80, {maxWidth: 170});
-  doc.addPage();
-
-  // --- Hauptprozesse ---
-  doc.setFontSize(18);
-  doc.setFont("helvetica", "bold");
-  doc.text("Reifegrad Ihrer Hauptprozesse", 20, 20);
-
-  let yPos = addChartImage(doc, document.getElementById('radarChart'), 20, 30, 170);
-
-  doc.setFontSize(12);
-  document.querySelectorAll("#fragebereich > div > p").forEach(p => {
-    const text = doc.splitTextToSize(p.textContent, 170);
-    if (yPos + text.length * 7 > 280) {
-      doc.addPage();
-      yPos = 20;
-    }
-    doc.text(text, 20, yPos);
-    yPos += text.length * 7;
-  });
-
-  // --- Details je Hauptprozess ---
-  ["Record to Report (R2R)", "Purchase to Pay (P2P)", "Order to Cash (O2C)"].forEach(prozess => {
-    const canvas = document.getElementById(`canvas-${prozess.replace(/\s+/g, "-")}`);
-    if (canvas) {
-      doc.addPage();
-      doc.setFontSize(16);
-      doc.setFont("helvetica", "bold");
-      doc.text(`Details zum Hauptprozess ${prozess}`, 20, 20);
-
-      let subTextY = addChartImage(doc, canvas, 20, 30, 170);
-
-      doc.setFontSize(12);
-      const section = canvas.nextElementSibling;
-      if (section) {
-        const paragraphs = section.querySelectorAll("p");
-        paragraphs.forEach(p => {
-          if (p.textContent.includes("unter dem Best Practice")) { // nur negative Abweichungen
-            const t = doc.splitTextToSize(p.textContent, 170);
-            if (subTextY + t.length * 7 > 280) {
-              doc.addPage();
-              subTextY = 20;
-            }
-            doc.text(t, 20, subTextY);
-            subTextY += t.length * 7;
-          }
-        });
-      }
-    }
-  });
-
-  // --- Impressum ---
-  doc.addPage();
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "bold");
-  doc.text("Impressum", 20, 20);
-  doc.setFontSize(12);
-  doc.setFont("helvetica", "normal");
-  doc.text("Dieses Service zum Vergleich Ihres Digitalisierungsreifegrades mit dem Best Practice wird Ihnen zur Verfügung gestellt von:", 20, 40, {maxWidth: 170});
-  doc.text("FH CAMPUS 02", 20, 55);
-  doc.text("Department Rechnungswesen & Controlling", 20, 62);
-  doc.text("Körblergasse 126, A-8010 Graz", 20, 69);
-  doc.text("Für weitere Informationen wenden Sie sich an rwc@campus02.at", 20, 78, {maxWidth: 170});
-
-  doc.save("Ergebnisse_Digitalisierungsreifegrad.pdf");
-}
-</script>
-
-
-<script>
-function exportPDF() {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-
-  function addChartImage(doc, canvas, x, y, maxWidth) {
-    if (canvas) {
-      const aspectRatio = canvas.width / canvas.height;
-      const width = maxWidth;
-      const height = width / aspectRatio;
-      const chartImage = canvas.toDataURL('image/png');
-      doc.addImage(chartImage, 'PNG', x, y, width, height);
-      return y + height + 10;
-    }
-    return y;
+  // ——— Header (Logo rechts oben, Seitenabstand lt. CD) ———
+  const logoImg = await loadImage(LOGO.src);
+  function header(isFirst = false) {
+    placeLogo(logoImg, isFirst ? LOGO.wFirst : LOGO.wNext, PAGE.margin);
   }
 
-  // --- Deckblatt ---
-  doc.setFontSize(22);
-  doc.setFont("helvetica", "bold");
-  doc.text("Ihr Digitalisierungsreifegrad", 20, 40);
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "normal");
-  doc.text("Datum: " + new Date().toLocaleDateString("de-DE"), 20, 55);
-  doc.setFontSize(12);
-  doc.text("Wir danken für die Nutzung unseres Services zum Vergleich Ihres Digitalisierungsreifegrades mit dem Best Practice.", 20, 70, {maxWidth: 170});
-  doc.text("Nachstehend finden Sie die Detailergebnisse.", 20, 80, {maxWidth: 170});
-  doc.addPage();
+  // ——— Deckblatt ———
+  header(true);
+  setTextStyle(22, COLOR.prim);
+  doc.text("Ihr Digitalisierungsreifegrad".toUpperCase(), PAGE.margin, 60);
+  setTextStyle(14, COLOR.text);
+  doc.text("Datum: " + new Date().toLocaleDateString("de-DE"), PAGE.margin, 70);
+  setTextStyle(12, COLOR.text);
+  doc.text(
+    doc.splitTextToSize(
+      "Wir danken für die Nutzung unseres Services zum Vergleich Ihres Digitalisierungsreifegrades mit dem Best Practice. Nachstehend finden Sie die Detailergebnisse.",
+      PAGE.w - 2 * PAGE.margin
+    ),
+    PAGE.margin,
+    82
+  );
+  newPage();
 
-  // --- Seite 2: Hauptprozesse ---
-  doc.setFontSize(18);
-  doc.setFont("helvetica", "bold");
-  doc.text("Reifegrad Ihrer Hauptprozesse", 20, 20);
+  // ——— Seite 2: Hauptprozesse (Radar + Fließtext) ———
+  let y = heading(PAGE.margin, "Reifegrad Ihrer Hauptprozesse", 2);
+  y = sectionGap(y);
 
-  let yPos = addChartImage(doc, document.getElementById('radarChart'), 20, 30, 170);
+  y = addChart(document.getElementById("radarChart"), y);
 
-  // Nur Absätze mit Hauptprozessnamen
-  doc.setFontSize(12);
-  document.querySelectorAll("#fragebereich > div > p").forEach(p => {
-    if (p.textContent.includes("Record to Report") || p.textContent.includes("Purchase to Pay") || p.textContent.includes("Order to Cash")) {
-      const text = doc.splitTextToSize(p.textContent, 170);
-      if (yPos + text.length * 7 > 280) {
-        doc.addPage();
-        yPos = 20;
+  // Nur die Hauptprozess-Absätze (Record to Report / Purchase to Pay / Order to Cash)
+  const overviewParas = Array.from(
+    document.querySelectorAll("#fragebereich > div > p")
+  ).filter(p =>
+    /Record to Report|Purchase to Pay|Order to Cash/.test(p.textContent)
+  );
+
+  setTextStyle(12, COLOR.text);
+  for (const p of overviewParas) {
+    y = addPara(p.textContent, y);
+  }
+
+  // ——— Details je Hauptprozess (Radar + max. 4 Abweichungen als Text) ———
+  const prozesse = [
+    "Record to Report (R2R)",
+    "Purchase to Pay (P2P)",
+    "Order to Cash (O2C)"
+  ];
+
+  for (const prozess of prozesse) {
+    const canvasId = `canvas-${prozess.replace(/\s+/g, "-")}`;
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) continue;
+
+    newPage();
+    y = heading(PAGE.margin, `Details zum Hauptprozess ${prozess}`, 2);
+    y = sectionGap(y);
+
+    y = addChart(canvas, y);
+
+    // Nur negative Abweichungen und auf max. vier Einträge begrenzen
+    const section = canvas.nextElementSibling;
+    if (section) {
+      const allNeg = Array.from(section.querySelectorAll("p"))
+        .filter(p => p.textContent.includes("unter dem Best Practice"))
+        ;
+
+      setTextStyle(12, COLOR.text);
+      for (const p of allNeg) {
+        y = addPara(p.textContent, y);
       }
-      doc.text(text, 20, yPos);
-      yPos += text.length * 7;
     }
-  });
+  }
 
-  // --- Details je Hauptprozess ---
-  ["Record to Report (R2R)", "Purchase to Pay (P2P)", "Order to Cash (O2C)"].forEach(prozess => {
-    const canvas = document.getElementById(`canvas-${prozess.replace(/\s+/g, "-")}`);
-    if (canvas) {
-      doc.addPage();
-      doc.setFontSize(16);
-      doc.setFont("helvetica", "bold");
-      doc.text(`Details zum Hauptprozess ${prozess}`, 20, 20);
+  // ——— Impressum ———
+  newPage();
+  y = heading(PAGE.margin, "Impressum", 2);
+  y = sectionGap(y);
+  setTextStyle(12, COLOR.text);
+  y = addPara(
+    "Dieses Service zum Vergleich Ihres Digitalisierungsreifegrades mit dem Best Practice wird Ihnen zur Verfügung gestellt von:",
+    y
+  );
+  y = addPara("FH CAMPUS 02", y);
+  y = addPara("Department Rechnungswesen & Controlling", y);
+  y = addPara("Körblergasse 126, A-8010 Graz", y);
+  y = addPara("Für weitere Informationen wenden Sie sich an rwc@campus02.at", y);
 
-      let subTextY = addChartImage(doc, canvas, 20, 30, 170);
+  // Logo am Ende des Impressums platzieren, y ist die Position NACH dem Text
+  placeLogo(logoImg, LOGO.wNext, y, 'left');
 
-      doc.setFontSize(12);
-      const section = canvas.nextElementSibling;
-      if (section) {
-        const paragraphs = section.querySelectorAll("p");
-        paragraphs.forEach(p => {
-          if (p.textContent.includes("unter dem Best Practice")) { // nur negative Abweichungen Unterprozesse
-            const t = doc.splitTextToSize(p.textContent, 170);
-            if (subTextY + t.length * 7 > 280) {
-              doc.addPage();
-              subTextY = 20;
-            }
-            doc.text(t, 20, subTextY);
-            subTextY += t.length * 7;
-          }
-        });
-      }
-    }
-  });
-
-  // --- Impressum ---
-  doc.addPage();
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "bold");
-  doc.text("Impressum", 20, 20);
-  doc.setFontSize(12);
-  doc.setFont("helvetica", "normal");
-  doc.text("Dieses Service zum Vergleich Ihres Digitalisierungsreifegrades mit dem Best Practice wird Ihnen zur Verfügung gestellt von:", 20, 40, {maxWidth: 170});
-  doc.text("FH CAMPUS 02", 20, 55);
-  doc.text("Department Rechnungswesen & Controlling", 20, 62);
-  doc.text("Körblergasse 126, A-8010 Graz", 20, 69);
-  doc.text("Für weitere Informationen wenden Sie sich an rwc@campus02.at", 20, 78, {maxWidth: 170});
-
-  // --- Speichern ---
+  // ——— Export ———
   doc.save("Ergebnisse_Digitalisierungsreifegrad.pdf");
 }
 </script>
+
+    <p style="text-align: right; font-size: 0.8em; color: gray; margin: 20px;">
+    Version: KIRA-WEB – Beta 2.0 (Stand: 28.08.2025)
+  </p>
 
 </body>
 </html>
+<!-- CD-konformes CSS -->
+<style>
+
+/* FH CAMPUS 02 CD-konformes Design */
+
+/* Grundfarben */
+:root {
+    --gelb: #fff165;
+    --rc-prim: #951d56;
+    --rc-prim-hell: #a24167;
+    --grau-text: #354149;
+    --hellgrau-hintergrund: #e7eaed;
+}
+
+/* Grundlayout */
+body {
+    font-family: 'Aptos', 'Segoe UI', sans-serif;
+    color: var(--grau-text);
+    background-color: var(--hellgrau-hintergrund);
+    margin: 0;
+    padding: 0;
+}
+
+/* Logo Positionierung */
+header {
+    background-color: var(--gelb);
+    padding: 10px;
+    text-align: right;
+}
+header img {
+    height: 50px;
+    margin-right: 15px;
+}
+
+/* Überschriften */
+h1, h2, h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--rc-prim);
+}
+
+/* Buttons */
+button, .btn {
+    background-color: var(--rc-prim);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+button:hover, .btn:hover {
+    background-color: var(--rc-prim-hell);
+}
+
+/* Antwort-Optionen */
+.option {
+    border: 1px solid var(--rc-prim);
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.option:hover {
+    background-color: var(--gelb);
+}
+
+/* Diagramme */
+.chart-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px auto;
+    border: 2px solid var(--rc-prim);
+}
+
+
+/* Linker und rechter Einzug für Textbereiche */
+#fragebereich, main {
+    padding-left: 40px;
+    padding-right: 40px;
+    max-width: 900px; /* Begrenzte Breite für bessere Lesbarkeit */
+    margin: 0 auto; /* zentrieren */
+}
+
+/* Antwortbuttons linksbündig */
+.antwort-button {
+    text-align: left;
+}
+
+</style>
