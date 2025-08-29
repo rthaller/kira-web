@@ -1,7 +1,7 @@
 // Neue Funktion zur Beschreibung des Reifegrads
 function reifegradText(prozent) {
   if (prozent < 20) return "Stufe 1: Digitale Neulinge";
-  if (prozent < 40) return "Stufe 2: Digitale Anfänger*innen";
+  if (prozent < 40) return "Stufe 2: Digitale fortgeschrittene Anfänger*innen";
   if (prozent < 60) return "Stufe 3: Digitale Anwender*innen";
   if (prozent < 80) return "Stufe 4: Digitale Gewandte";
   return "Stufe 5: Digitale Expert*innen";

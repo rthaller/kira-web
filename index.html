@@ -25,7 +25,7 @@
     let aktuelleFrage = 0;
 
     const prozessbeschreibungen = {
-      "Record to Report (R2R)": "In diesem Abschnitt werden die Prozesse betrachtet, die der Aufbereitung und Analyse betriebswirtschaftlicher Kennzahlen und Finanzdaten dienen. Dazu zählen unter anderem die Umsatzsteuervoranmeldung, die Erstellung von Monatsberichten sowie die interne Bereitstellung und Verteilung dieser Informationen.",
+      "Record to Report (R2R)": "In diesem Abschnitt werden die Prozesse betrachtet, die der Aufbereitung und Analyse betriebswirtschaftlicher Kennzahlen und Finanzdaten dienen. Dazu zählen unter anderem die Umsatzsteuervoranmeldung (UVA), die Erstellung von Monatsberichten sowie die interne Bereitstellung und Verteilung dieser Informationen.",
       "Purchase to Pay (P2P)": "In diesem Abschnitt beantworten Sie Fragen zu Ihren Beschaffungsprozessen - alles vom Erkennen eines Bedarfs bis zur Bezahlung einer Eingangsrechnung. Dabei geht es unter anderem um Bedarfsermittlung, Bestellung, Rechnungsprüfung und Zahlungsabwicklung.",
       "Order to Cash (O2C)": "Hier geht es um Ihre Abläufe im Verkauf - vom Eingang eines Auftrags durch Kund*innen bis zum Zahlungseingang. Erhoben wird unter anderem, wie Sie Rechnungen erstellen, versenden, archivieren und Zahlungen überwachen."
     };
@@ -167,6 +167,8 @@
       // Frage 1: Branche
       const brancheLabel = document.createElement('label');
       brancheLabel.textContent = 'In welcher Branche ist ihr Unternehmen hauptsächlich tätig?';
+      form.appendChild(brancheLabel);
+      form.appendChild(document.createElement('br'));
       const brancheSelect = document.createElement('select');
       brancheSelect.id = 'branche';
       [
@@ -196,12 +198,15 @@
       });
 
       form.appendChild(brancheLabel);
+      form.appendChild(document.createElement('br'));   // NEU: Umbruch nach der Frage
       form.appendChild(brancheSelect);
+      form.appendChild(document.createElement('br'));   // NEU: Umbruch nach Dropdown
       form.appendChild(document.createElement('br'));
 
       // Frage 2: Mitarbeitendenanzahl
       const mitarbLabel = document.createElement('label');
-      mitarbLabel.textContent = 'Wie viele Mitarbeiter*innen beschäftigt ihr Unternehmen? Bitte wählen Sie gemäß der (geschätzten) Anzahl vollzeitäquivalent aus.';
+      mitarbLabel.textContent = 'Wie viele Mitarbeiter*innen beschäftigt Ihr Unternehmen? Bitte geben Sie die (geschätzte) Anzahl an - gerechnet in Vollzeitäquivalenten.';
+      form.appendChild(document.createElement('br'));
       const mitarbSelect = document.createElement('select');
       mitarbSelect.id = 'mitarbeitende';
       [
@@ -218,12 +223,15 @@
 });
 
       form.appendChild(mitarbLabel);
+      form.appendChild(document.createElement('br'));
       form.appendChild(mitarbSelect);
+      form.appendChild(document.createElement('br'));
       form.appendChild(document.createElement('br'));
 
       // Frage 3: Bundesland
       const bundeslandLabel = document.createElement('label');
       bundeslandLabel.textContent = 'In welchem Bundesland hat Ihr Unternehmen die Hauptbetriebsstätte?';
+      form.appendChild(document.createElement('br'));
       const bundeslandSelect = document.createElement('select');
       bundeslandSelect.id = 'bundesland';
       [
@@ -243,7 +251,9 @@
         bundeslandSelect.appendChild(o);
       });
       form.appendChild(bundeslandLabel);
+      form.appendChild(document.createElement('br'));
       form.appendChild(bundeslandSelect);
+      form.appendChild(document.createElement('br'));
       form.appendChild(document.createElement('br'));
 
       // Absende-Button
@@ -286,7 +296,7 @@
 
     function reifegradText(prozent) {
       if (prozent < 20) return "Stufe 1: Digitale Neulinge";
-      if (prozent < 40) return "Stufe 2: Digitale Anfänger*innen";
+      if (prozent < 40) return "Stufe 2: Digitale fortgeschrittene Anfänger*innen";
       if (prozent < 60) return "Stufe 3: Digitale Anwender*innen";
       if (prozent < 80) return "Stufe 4: Digitale Gewandte";
       return "Stufe 5: Digitale Expert*innen";
@@ -702,7 +712,7 @@ async function exportPDF() {
 </script>
 
     <p style="text-align: right; font-size: 0.8em; color: gray; margin: 20px;">
-    Version: KIRA-WEB – Beta 2.0 (Stand: 28.08.2025)
+    Version: KIRA-WEB - Beta 2.1 (Stand: 29.08.2025)
   </p>
 
 </body>
