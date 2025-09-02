@@ -5,11 +5,13 @@
   <title>KIRA-WEB – Fragebogen</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
-<header style="background-color: #fff165; padding: 10px; text-align: right;">
-    <img src="images/C02 Logo.png" alt="FH CAMPUS 02 Logo" style="height: 50px; margin-right: 15px;">
+<header class="app-header">
+  <img src="images/DELFIN Logo.png" alt="DELFIN Logo" class="logo-delfin">
+  <img src="images/C02 Logo.png" alt="FH CAMPUS 02 Logo" class="logo-fh">
 </header>
 
   <h1 style="text-align:left; padding-left:40px;">Ihr individueller Digitalisierungsreifegrad</h1>
@@ -505,6 +507,15 @@
       pdfBtn.onclick = () => { console.log("PDF Button geklickt"); console.log("jsPDF verfügbar:", window.jspdf); exportPDF(); };
       frageDiv.appendChild(pdfBtn);
       
+      const kooperationsLink = document.createElement("div");
+      kooperationsLink.className = "kooperations-link";
+      kooperationsLink.innerHTML = `
+        <a href="https://www.campus02.at/rechnungswesen/transfer" target="_blank">
+          Interesse an Kooperationsmöglichkeiten bei Ihren Digitalisierungsaktivitäten?
+        </a>
+      `;
+      frageDiv.appendChild(kooperationsLink);
+
       console.log('✅ Auswertung fertig')
     }
   </script>
@@ -534,6 +545,8 @@ async function exportPDF() {
     margin: 15
   };
   const LOGO = { src: "images/C02 Logo.png", wFirst: 50, wNext: 40 }; // mm
+  const DELFIN = { src: "images/DELFIN Logo.png", wDeck: 120, yDeck: 110 }; // mm: Breite & y-Position fürs Deckblatt
+
 
   // ——— Utils ———
   function mm(x) { return x; } // (nur der Lesbarkeit halber)
@@ -609,6 +622,15 @@ async function exportPDF() {
     const y = yPos;
     doc.addImage(imgEl, "PNG", x, y, w, h);
 }
+
+  function placeLogoCentered(imgEl, widthMM, yPos) {
+    const w = widthMM;
+    const aspect = imgEl.naturalWidth / imgEl.naturalHeight;
+    const h = w / aspect;
+    const x = (PAGE.w - w) / 2;  // horizontale Zentrierung
+    doc.addImage(imgEl, "PNG", x, yPos, w, h);
+}
+
   function newPage() {
     doc.addPage();
   }
@@ -618,12 +640,48 @@ async function exportPDF() {
 
   // ——— Header (Logo rechts oben, Seitenabstand lt. CD) ———
   const logoImg = await loadImage(LOGO.src);
+  const delfinImg = await loadImage(DELFIN.src);
   function header(isFirst = false) {
     placeLogo(logoImg, isFirst ? LOGO.wFirst : LOGO.wNext, PAGE.margin);
   }
 
+  // QR-Code für die Transfer-Seite vorbereiten (robuster Poll bis Bild da ist)
+  let qrDataUrl = null;
+  try {
+    const qrContainer = document.createElement("div");
+    qrContainer.style.position = "fixed";
+    qrContainer.style.left = "-9999px";
+    document.body.appendChild(qrContainer);
+
+    new QRCode(qrContainer, {
+      text: "https://www.campus02.at/rechnungswesen/transfer",
+      width: 256,
+      height: 256,
+      correctLevel: QRCode.CorrectLevel.M
+    });
+
+    // bis zu 2 Sekunden warten, bis img/canvas verfügbar ist
+    const started = Date.now();
+    while (!qrDataUrl && Date.now() - started < 2000) {
+      await new Promise(r => setTimeout(r, 50));
+      const imgEl = qrContainer.querySelector("img");
+      const canvasEl = qrContainer.querySelector("canvas");
+      if (imgEl && imgEl.src) qrDataUrl = imgEl.src;
+      else if (canvasEl) qrDataUrl = canvasEl.toDataURL("image/png");
+    }
+
+    document.body.removeChild(qrContainer);
+  } catch (e) {
+    console.warn("QR-Code konnte nicht erzeugt werden:", e);
+    qrDataUrl = null;
+  }
+
   // ——— Deckblatt ———
-  header(true);
+  header(true); // FH CAMPUS 02 rechts oben wie bisher
+
+  // DELFIN groß und mittig
+  placeLogoCentered(delfinImg, DELFIN.wDeck, DELFIN.yDeck); // z.B. 120 mm breit, y=110 mm
+
   setTextStyle(22, COLOR.prim);
   doc.text("Ihr Digitalisierungsreifegrad".toUpperCase(), PAGE.margin, 60);
   setTextStyle(14, COLOR.text);
@@ -706,13 +764,32 @@ async function exportPDF() {
   // Logo am Ende des Impressums platzieren, y ist die Position NACH dem Text
   placeLogo(logoImg, LOGO.wNext, y, 'left');
 
+  // QR-Code mittig unterhalb des CAMPUS 02 Logos (nur wenn vorhanden)
+  const qrWidth = 40; // mm
+  const qrX = (PAGE.w - qrWidth) / 2;
+  const qrY = PAGE.h - PAGE.margin - qrWidth - 10;
+
+  if (qrDataUrl) {
+    doc.addImage(qrDataUrl, "PNG", qrX, qrY, qrWidth, qrWidth);
+
+    // Text unterhalb des QR-Codes
+    doc.setFontSize(10);
+    doc.setTextColor(0, 0, 0);
+    doc.text(
+      "Interesse an Kooperationsmöglichkeiten bei Ihren Digitalisierungsaktivitäten?",
+      PAGE.w / 2,
+      qrY + qrWidth + 6,
+      { align: "center" }
+    );
+  }
+
   // ——— Export ———
   doc.save("Ergebnisse_Digitalisierungsreifegrad.pdf");
 }
 </script>
 
     <p style="text-align: right; font-size: 0.8em; color: gray; margin: 20px;">
-    Version: KIRA-WEB - Beta 2.1 (Stand: 29.08.2025)
+    Version: KIRA-WEB - Beta 2.1.2 (Stand: 02.09.2025)
   </p>
 
 </body>
@@ -741,11 +818,16 @@ body {
 }
 
 /* Logo Positionierung */
-header {
-    background-color: var(--gelb);
-    padding: 10px;
-    text-align: right;
+.app-header {
+  background-color: var(--gelb);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+.logo-delfin { height: 50px; margin-left: 15px; }
+.logo-fh     { height: 50px; margin-right: 15px; }
+
 header img {
     height: 50px;
     margin-right: 15px;
@@ -807,6 +889,19 @@ button:hover, .btn:hover {
 /* Antwortbuttons linksbündig */
 .antwort-button {
     text-align: left;
+}
+
+.kooperations-link {
+  margin-top: 20px;   /* Abstand zu den Buttons */
+  text-align: center;
+}
+.kooperations-link a {
+  font-size: 14px;
+  color: #951d56;     /* Departmentfarbe RWC */
+  text-decoration: none;
+}
+.kooperations-link a:hover {
+  text-decoration: underline;
 }
 
 </style>
