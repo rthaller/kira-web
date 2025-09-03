@@ -761,27 +761,32 @@ async function exportPDF() {
   y = addPara("Körblergasse 126, A-8010 Graz", y);
   y = addPara("Für weitere Informationen wenden Sie sich an rwc@campus02.at", y);
 
-  // Logo am Ende des Impressums platzieren, y ist die Position NACH dem Text
-  placeLogo(logoImg, LOGO.wNext, y, 'left');
-
-  // QR-Code mittig unterhalb des CAMPUS 02 Logos (nur wenn vorhanden)
+  // --- Impressum: QR + Link-Text ---
   const qrWidth = 40; // mm
   const qrX = (PAGE.w - qrWidth) / 2;
-  const qrY = PAGE.h - PAGE.margin - qrWidth - 10;
+  const qrY = PAGE.h - PAGE.margin - qrWidth - 10; // 10 mm über Unterkante
 
   if (qrDataUrl) {
+    // QR-Code mittig platzieren
     doc.addImage(qrDataUrl, "PNG", qrX, qrY, qrWidth, qrWidth);
-
-    // Text unterhalb des QR-Codes
-    doc.setFontSize(10);
-    doc.setTextColor(0, 0, 0);
-    doc.text(
-      "Interesse an Kooperationsmöglichkeiten bei Ihren Digitalisierungsaktivitäten?",
-      PAGE.w / 2,
-      qrY + qrWidth + 6,
-      { align: "center" }
-    );
   }
+
+  // Text unterhalb des QR-Codes (zentriert) + klickbarer Link
+  const linkText = "Interesse an Kooperationsmöglichkeiten bei Ihren Digitalisierungsaktivitäten?";
+  doc.setFontSize(10);
+  doc.setTextColor(0, 0, 0);
+
+  const textY = qrY + qrWidth + 6;                // 6 mm unter dem QR
+  const textWidth = doc.getTextWidth(linkText);
+  const textX = (PAGE.w - textWidth) / 2;
+
+  doc.text(linkText, textX, textY);
+
+  // Klickbare Link-Annotation über den Text legen
+  const linkHeight = 5; // ~ Zeilenhöhe bei 10pt
+  doc.link(textX, textY - linkHeight + 1, textWidth, linkHeight, {
+    url: "https://www.campus02.at/rechnungswesen/transfer"
+  });
 
   // ——— Export ———
   doc.save("Ergebnisse_Digitalisierungsreifegrad.pdf");
@@ -789,7 +794,7 @@ async function exportPDF() {
 </script>
 
     <p style="text-align: right; font-size: 0.8em; color: gray; margin: 20px;">
-    Version: KIRA-WEB - Beta 2.1.2 (Stand: 02.09.2025)
+    Version: KIRA-WEB - Beta 2.1.3 (Stand: 03.09.2025)
   </p>
 
 </body>
@@ -896,7 +901,7 @@ button:hover, .btn:hover {
   text-align: center;
 }
 .kooperations-link a {
-  font-size: 14px;
+  font-size: 16px;
   color: #951d56;     /* Departmentfarbe RWC */
   text-decoration: none;
 }
